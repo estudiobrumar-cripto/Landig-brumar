@@ -238,6 +238,96 @@
   .step h3{font-size:20px; margin-bottom:10px;}
   .step p{color:var(--ink-soft); font-size:15px;}
 
+  /* ===================== COTIZADOR ===================== */
+  .cotizador{background:var(--cream-deep);}
+  .cotizador__head{max-width:640px; margin-bottom:var(--space-l);}
+  .cotizador__head h2{font-size:clamp(26px,4vw,40px);}
+  .cotizador__head p{margin-top:14px; color:var(--ink-soft);}
+  .quoter{
+    background:var(--cream);
+    border-radius:24px;
+    border:1px solid rgba(44,40,35,.08);
+    padding:36px;
+    display:grid;
+    gap:32px;
+  }
+  @media (min-width:900px){.quoter{grid-template-columns:1fr 1fr; padding:44px;}}
+
+  .quoter__left{display:flex; flex-direction:column; justify-content:center;}
+  .quoter__count{display:flex; align-items:baseline; gap:10px; margin-bottom:6px;}
+  .quoter__count-num{font-family:var(--font-display); font-size:56px; color:var(--terracotta-deep);}
+  .quoter__count-label{font-size:15px; color:var(--ink-soft);}
+  .quoter__tier{
+    display:inline-block;
+    font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--terracotta-deep);
+    background:rgba(161,114,89,.1);
+    padding:5px 12px;
+    border-radius:100px;
+    margin-bottom:22px;
+    width:fit-content;
+  }
+
+  .slider{
+    -webkit-appearance:none;
+    appearance:none;
+    width:100%;
+    height:6px;
+    border-radius:100px;
+    background:var(--sand);
+    outline:none;
+    margin:14px 0 6px;
+  }
+  .slider::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    appearance:none;
+    width:26px;height:26px;
+    border-radius:50%;
+    background:var(--terracotta);
+    border:4px solid var(--cream);
+    box-shadow:0 2px 8px rgba(44,40,35,.3);
+    cursor:pointer;
+  }
+  .slider::-moz-range-thumb{
+    width:26px;height:26px;
+    border-radius:50%;
+    background:var(--terracotta);
+    border:4px solid var(--cream);
+    box-shadow:0 2px 8px rgba(44,40,35,.3);
+    cursor:pointer;
+    border:none;
+  }
+  .slider::-moz-range-track{height:6px; border-radius:100px; background:var(--sand);}
+  .quoter__scale{display:flex; justify-content:space-between; font-size:12px; color:var(--ink-soft); margin-bottom:28px;}
+
+  .quoter__price-row{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
+  .quoter__price{font-family:var(--font-display); font-size:34px; color:var(--ink);}
+  .quoter__price-sub{font-size:14px; color:var(--ink-soft);}
+  .quoter__total{margin-top:4px; font-size:14px; color:var(--ink-soft);}
+  .quoter__total strong{color:var(--ink); font-weight:600;}
+
+  .quoter__right{
+    background:var(--cream-deep);
+    border-radius:16px;
+    padding:28px 26px;
+  }
+  .quoter__right h3{font-family:var(--font-body); font-size:14px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); margin-bottom:16px;}
+  .quoter__list{list-style:none; display:flex; flex-direction:column; gap:12px; margin-bottom:26px;}
+  .quoter__list li{display:flex; align-items:flex-start; gap:10px; font-size:15px; color:var(--ink);}
+  .quoter__list li::before{
+    content:"";
+    flex-shrink:0;
+    width:18px;height:18px;
+    margin-top:2px;
+    border-radius:50%;
+    background:var(--terracotta);
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M9 16.2l-3.5-3.5-1.4 1.4L9 19 20 8l-1.4-1.4z'/%3E%3C/svg%3E") center/70% no-repeat;
+    mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M9 16.2l-3.5-3.5-1.4 1.4L9 19 20 8l-1.4-1.4z'/%3E%3C/svg%3E") center/70% no-repeat;
+  }
+  .quoter__list li.is-dynamic{font-weight:600;}
+  .quoter__right .btn{width:100%; justify-content:center;}
+  .quoter__right .microcopy{text-align:center;}
+
   /* ===================== PROMESA ===================== */
   .promesa{
     background:var(--ink);
@@ -426,6 +516,43 @@
   </div>
 </section>
 
+<!-- ============ COTIZADOR ============ -->
+<section class="cotizador" id="precios">
+  <div class="container">
+    <div class="cotizador__head reveal">
+      <span class="eyebrow">Planes y precios</span>
+      <h2>Arma tu sesión a tu manera.</h2>
+      <p>Mueve el control para elegir cuántas fotos editadas quieres. Entre más fotos, menor el precio por foto.</p>
+    </div>
+
+    <div class="quoter reveal">
+      <div class="quoter__left">
+        <div class="quoter__count">
+          <span class="quoter__count-num" id="qCount">20</span>
+          <span class="quoter__count-label">fotos editadas</span>
+        </div>
+        <span class="quoter__tier" id="qTierLabel">Paquete Estándar</span>
+
+        <input type="range" min="10" max="40" value="20" step="1" class="slider" id="qSlider" aria-label="Cantidad de fotos">
+        <div class="quoter__scale"><span>10</span><span>40</span></div>
+
+        <div class="quoter__price-row">
+          <span class="quoter__price" id="qPricePerPhoto">$75</span>
+          <span class="quoter__price-sub">por foto</span>
+        </div>
+        <div class="quoter__total">Total estimado: <strong id="qTotal">$1,500 MXN</strong></div>
+      </div>
+
+      <div class="quoter__right">
+        <h3>Tu paquete incluye</h3>
+        <ul class="quoter__list" id="qList"></ul>
+        <a href="#" class="btn" id="qWhatsapp" target="_blank" rel="noopener">Reservar este paquete</a>
+        <span class="microcopy">Precio referencial. Se confirma en la llamada de planificación.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ PROMESA ============ -->
 <section class="promesa">
   <div class="container reveal">
@@ -537,6 +664,51 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
   }, { threshold:0.12 });
   revealEls.forEach(el => io.observe(el));
+
+  // Cotizador
+  const qSlider = document.getElementById('qSlider');
+  const qCount = document.getElementById('qCount');
+  const qTierLabel = document.getElementById('qTierLabel');
+  const qPricePerPhoto = document.getElementById('qPricePerPhoto');
+  const qTotal = document.getElementById('qTotal');
+  const qList = document.getElementById('qList');
+  const qWhatsapp = document.getElementById('qWhatsapp');
+
+  function getTier(n){
+    if (n <= 19) return { name:'Paquete Básico', price:90, edicion:'Edición básica', cambios:null };
+    if (n <= 29) return { name:'Paquete Estándar', price:75, edicion:'Edición profesional', cambios:'1 cambio de ropa' };
+    if (n <= 34) return { name:'Paquete Avanzado', price:66, edicion:'Edición profesional', cambios:'1 cambio de ropa' };
+    return { name:'Paquete Premium', price:60, edicion:'Edición profesional', cambios:'2 cambios de ropa' };
+  }
+
+  function updateQuoter(){
+    const n = parseInt(qSlider.value, 10);
+    const tier = getTier(n);
+    const total = n * tier.price;
+
+    qCount.textContent = n;
+    qTierLabel.textContent = tier.name;
+    qPricePerPhoto.textContent = '$' + tier.price;
+    qTotal.textContent = '$' + total.toLocaleString('es-MX') + ' MXN';
+
+    const items = [
+      'Llamada de planificación',
+      'Dirección de posado',
+      'Galería de selección',
+      tier.edicion
+    ];
+    if (tier.cambios) items.push(tier.cambios);
+
+    qList.innerHTML = items.map(it => `<li>${it}</li>`).join('')
+      + `<li class="is-dynamic">${n} fotos editadas incluidas</li>`;
+
+    // REEMPLAZA 5219981234567 por el número real (mismo que en el resto del sitio)
+    const msg = encodeURIComponent(`Hola Adriel, quiero reservar el ${tier.name} de ${n} fotos (total aprox. $${total} MXN).`);
+    qWhatsapp.href = `https://wa.me/5219981234567?text=${msg}`;
+  }
+
+  qSlider.addEventListener('input', updateQuoter);
+  updateQuoter();
 
   // Lightbox
   const grid = document.getElementById('portfolioGrid');
