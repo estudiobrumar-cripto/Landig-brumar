@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brumar | Fotografía familiar en las playas de Cancún</title>
+<meta name="description" content="Sesiones de fotografía familiar en las playas de Cancún. Vuelve a casa con recuerdos reales de tus vacaciones, no solo con arena en los zapatos.">
+
+<!-- Open Graph -->
+<meta property="og:type" content="business.business">
+<meta property="og:title" content="Brumar | Fotografía familiar en las playas de Cancún">
+<meta property="og:description" content="Sesiones de fotografía familiar en las playas de Cancún. Vuelve a casa con recuerdos reales de tus vacaciones.">
+<meta property="og:image" content="https://res.cloudinary.com/dcio95v6m/image/upload/f_auto,q_auto/v1781577112/Dise%C3%B1o_sin_t%C3%ADtulo_kirfzv.png">
+<meta property="og:locale" content="es_MX">
+
+<link rel="icon" href="https://res.cloudinary.com/dcio95v6m/image/upload/w_64,h_64,c_fill,q_auto,f_auto/v1781577115/d54ecc66-3d17-4788-a42c-ffff938f80d3_gj0bym.jpg" type="image/jpeg">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Brumar",
+  "image": "https://res.cloudinary.com/dcio95v6m/image/upload/v1781577112/Copia_de_IMG_3897-Editar_roaivf.jpg",
+  "description": "Fotografía familiar de vacaciones en las playas de Cancún.",
+  "areaServed": "Cancún, Quintana Roo, México",
+  "founder": { "@type": "Person", "name": "Adriel Poot" }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  /* ===================== TOKENS ===================== */
+  :root{
+    --cream:#F5F0E8;
+    --cream-deep:#ECE3D3;
+    --sand:#B2A592;
+    --mist:#798689;
+    --terracotta:#A17259;
+    --terracotta-deep:#8A5F49;
+    --ink:#2C2823;
+    --ink-soft:#5B554B;
+    --white:#FFFFFF;
+
+    --font-display:'Fraunces', serif;
+    --font-body:'Work Sans', sans-serif;
+
+    --space-s: 16px;
+    --space-m: 32px;
+    --space-l: 48px;
+    --space-xl: 80px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--font-body);
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3{font-family:var(--font-display);font-weight:500;line-height:1.12;color:var(--ink);}
+  .eyebrow{
+    font-family:var(--font-body);
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    font-size:12px;
+    font-weight:600;
+    color:var(--terracotta-deep);
+    display:block;
+    margin-bottom:14px;
+  }
+  .container{max-width:1180px;margin:0 auto;padding:0 var(--space-s);}
+  section{padding:var(--space-xl) 0;}
+  @media (max-width:640px){
+    section{padding:56px 0;}
+    :root{--space-xl:56px;}
+  }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{outline:2px solid var(--terracotta);outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ===================== BUTTONS ===================== */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--terracotta);
+    color:var(--cream);
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:15px;
+    padding:16px 30px;
+    border-radius:100px;
+    border:none;
+    cursor:pointer;
+    box-shadow:0 8px 20px -8px rgba(161,114,89,.55);
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{background:var(--terracotta-deep); transform:translateY(-2px); box-shadow:0 12px 24px -8px rgba(161,114,89,.6);}
+  .btn-ghost{
+    background:transparent;
+    border:1.5px solid var(--ink);
+    color:var(--ink);
+    box-shadow:none;
+  }
+  .btn-ghost:hover{background:var(--ink); color:var(--cream);}
+  .microcopy{
+    display:block;
+    margin-top:12px;
+    font-size:13px;
+    color:var(--ink-soft);
+  }
+
+  /* ===================== NAV ===================== */
+  .nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px var(--space-s);
+    background:rgba(245,240,232,.72);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(44,40,35,.06);
+  }
+  .nav.is-solid{background:rgba(245,240,232,.94);}
+  .nav__logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-size:20px;}
+  .nav__logo img{height:34px;width:auto;}
+  .nav .btn{padding:12px 22px;font-size:14px;}
+
+  /* ===================== HERO ===================== */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    align-items:flex-end;
+    padding:0;
+  }
+  .hero__media{position:absolute;inset:0;overflow:hidden;}
+  .hero__media img{width:100%;height:100%;object-fit:cover;object-position:center 30%;}
+  .hero__scrim{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(44,40,35,.15) 0%, rgba(44,40,35,.10) 35%, rgba(44,40,35,.72) 100%);
+  }
+  .hero__content{
+    position:relative;
+    z-index:2;
+    width:100%;
+    padding:0 var(--space-s) 64px;
+    max-width:1180px;
+    margin:0 auto;
+    color:var(--cream);
+  }
+  .hero__content .eyebrow{color:#E7C9AE;}
+  .hero h1{
+    font-size:clamp(34px, 6.2vw, 68px);
+    max-width:16ch;
+    color:var(--white);
+  }
+  .hero p{
+    margin-top:20px;
+    font-size:clamp(16px, 2vw, 19px);
+    max-width:46ch;
+    color:rgba(245,240,232,.92);
+    font-weight:300;
+  }
+  .hero__cta{margin-top:32px;}
+  .hero__cta .microcopy{color:rgba(245,240,232,.75);}
+
+  .scroll-hint{
+    position:absolute; bottom:22px; left:50%; transform:translateX(-50%);
+    z-index:2; color:var(--cream); opacity:.75;
+    display:flex; flex-direction:column; align-items:center; gap:6px;
+    font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+  }
+  .scroll-hint span{width:1px;height:26px;background:currentColor;animation:scrollDown 1.8s ease-in-out infinite;}
+  @keyframes scrollDown{0%{opacity:0; transform:scaleY(.3); transform-origin:top;}50%{opacity:1;transform:scaleY(1);transform-origin:top;}100%{opacity:0;transform:scaleY(.3);transform-origin:bottom;}}
+
+  /* ===================== MIST DIVIDER (signature element) ===================== */
+  .mist-divider{
+    position:relative;
+    height:120px;
+    margin-top:-1px;
+    background:
+      radial-gradient(60% 100% at 20% 100%, rgba(121,134,137,.35), transparent 70%),
+      radial-gradient(50% 100% at 60% 100%, rgba(245,240,232,.9), transparent 75%),
+      radial-gradient(70% 100% at 90% 100%, rgba(178,165,146,.35), transparent 70%);
+    filter:blur(18px);
+  }
+  @media (max-width:640px){.mist-divider{height:70px;}}
+
+  /* ===================== REVEAL ===================== */
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .8s ease, transform .8s ease;}
+  .reveal.is-visible{opacity:1; transform:translateY(0);}
+
+  /* ===================== PROBLEMA ===================== */
+  .problema{background:var(--cream);}
+  .problema__grid{display:grid; gap:var(--space-l); align-items:center;}
+  .problema h2{font-size:clamp(26px,4vw,40px); max-width:16ch;}
+  .problema p{margin-top:18px; color:var(--ink-soft); font-size:16px; max-width:52ch;}
+  @media (min-width:900px){
+    .problema__grid{grid-template-columns:1fr 1fr; gap:var(--space-xl);}
+  }
+
+  /* ===================== PROCESO ===================== */
+  .proceso{background:var(--cream-deep);}
+  .proceso__head{max-width:640px; margin-bottom:var(--space-l);}
+  .proceso__head h2{font-size:clamp(26px,4vw,40px);}
+  .proceso__head p{margin-top:14px; color:var(--ink-soft);}
+  .proceso__grid{display:grid; gap:24px; grid-template-columns:1fr;}
+  @media (min-width:820px){.proceso__grid{grid-template-columns:repeat(3,1fr);}}
+  .step{
+    background:var(--cream);
+    border-radius:18px;
+    padding:32px 26px;
+    border:1px solid rgba(44,40,35,.07);
+  }
+  .step__num{
+    font-family:var(--font-display);
+    font-size:15px;
+    color:var(--terracotta);
+    border:1px solid var(--terracotta);
+    width:34px;height:34px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:20px;
+  }
+  .step h3{font-size:20px; margin-bottom:10px;}
+  .step p{color:var(--ink-soft); font-size:15px;}
+
+  /* ===================== PROMESA ===================== */
+  .promesa{
+    background:var(--ink);
+    color:var(--cream);
+    text-align:center;
+  }
+  .promesa .container{max-width:820px;}
+  .promesa .eyebrow{color:var(--sand);}
+  .promesa h2{color:var(--white); font-size:clamp(26px,4.4vw,44px); font-style:italic;}
+  .promesa p{margin-top:22px; color:rgba(245,240,232,.82); font-size:17px; max-width:60ch; margin-left:auto; margin-right:auto;}
+
+  /* ===================== PORTAFOLIO ===================== */
+  .portafolio__head{max-width:640px; margin-bottom:var(--space-l);}
+  .portafolio__head h2{font-size:clamp(26px,4vw,40px);}
+  .portafolio__head p{margin-top:14px; color:var(--ink-soft);}
+  .grid{
+    display:grid;
+    gap:12px;
+    grid-template-columns:repeat(2,1fr);
+  }
+  @media (min-width:720px){
+    .grid{grid-template-columns:repeat(4,1fr); grid-auto-rows:210px;}
+    .grid .tall{grid-row:span 2;}
+  }
+  .grid figure{
+    position:relative;
+    overflow:hidden;
+    border-radius:14px;
+    aspect-ratio:3/4;
+    cursor:pointer;
+    background:var(--sand);
+  }
+  @media (min-width:720px){.grid figure{aspect-ratio:auto; height:100%;}}
+  .grid img{width:100%;height:100%;object-fit:cover; transition:transform .6s ease;}
+  .grid figure:hover img{transform:scale(1.06);}
+
+  /* Lightbox */
+  .lightbox{
+    position:fixed;inset:0;z-index:200;
+    background:rgba(20,18,16,.92);
+    display:none;
+    align-items:center;justify-content:center;
+    padding:24px;
+  }
+  .lightbox.is-open{display:flex;}
+  .lightbox img{max-width:100%; max-height:88vh; border-radius:8px;}
+  .lightbox__close{
+    position:absolute; top:20px; right:24px;
+    background:none;border:none;color:var(--cream);font-size:32px;cursor:pointer;line-height:1;
+  }
+
+  /* ===================== SOBRE MÍ ===================== */
+  .sobre{background:var(--sand); color:var(--ink);}
+  .sobre__grid{display:grid; gap:var(--space-l); align-items:center;}
+  @media (min-width:880px){.sobre__grid{grid-template-columns:0.8fr 1.2fr; gap:var(--space-xl);}}
+  .sobre__photo{
+    border-radius:20px;
+    overflow:hidden;
+    aspect-ratio:4/5;
+  }
+  .sobre__photo img{width:100%;height:100%;object-fit:cover;}
+  .sobre h2{font-size:clamp(26px,4vw,38px);}
+  .sobre .lead{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:20px;
+    margin-top:16px;
+    color:var(--ink);
+  }
+  .sobre p{margin-top:16px; color:#3f3a32; font-size:16px; max-width:56ch;}
+  .sobre__quote{
+    margin-top:22px;
+    padding-left:18px;
+    border-left:3px solid var(--terracotta);
+    font-style:italic;
+    color:var(--ink);
+    font-size:15px;
+  }
+  .sobre__sig{margin-top:22px; font-family:var(--font-display); font-size:19px;}
+
+  /* ===================== PRUEBA SOCIAL ===================== */
+  .social{background:var(--cream); text-align:center;}
+  .social .container{max-width:760px;}
+  .social__mark{font-family:var(--font-display); font-size:64px; color:var(--terracotta); line-height:1; margin-bottom:6px;}
+  .social p{font-family:var(--font-display); font-size:clamp(20px,3vw,28px); font-style:italic; color:var(--ink);}
+
+  /* ===================== CTA FINAL ===================== */
+  .cta-final{
+    background:var(--cream-deep);
+    text-align:center;
+  }
+  .cta-final h2{font-size:clamp(28px,5vw,48px); max-width:14ch; margin:0 auto;}
+  .cta-final .btn{margin-top:30px;}
+
+  /* ===================== FOOTER ===================== */
+  footer{
+    background:var(--ink);
+    color:rgba(245,240,232,.75);
+    padding:var(--space-l) 0 var(--space-m);
+    text-align:center;
+  }
+  .footer__logo{height:30px; margin:0 auto 18px; filter:brightness(0) invert(1); opacity:.85;}
+  .footer__social{display:flex; justify-content:center; gap:22px; margin-bottom:22px; font-size:14px;}
+  .footer__social a{opacity:.85;}
+  .footer__social a:hover{opacity:1; color:var(--sand);}
+  footer .fine{font-size:12px; opacity:.55;}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="siteNav">
+  <a href="#top" class="nav__logo" aria-label="Brumar - inicio">
+    <img src="https://res.cloudinary.com/dcio95v6m/image/upload/w_120,q_auto,f_auto/v1781577112/ISOTIPO-09_pgk5wl.png" alt="Logo Brumar" width="34" height="34">
+    Brumar
+  </a>
+  <!-- CTA único: sin menú de navegación con enlaces adicionales, por doctrina CRO -->
+  <a href="#contacto" class="btn">Escríbeme por WhatsApp</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="hero__media">
+    <img
+      src="https://res.cloudinary.com/dcio95v6m/image/upload/w_1600,q_auto,f_auto/v1781577112/Copia_de_IMG_3897-Editar_roaivf.jpg"
+      srcset="https://res.cloudinary.com/dcio95v6m/image/upload/w_800,q_auto,f_auto/v1781577112/Copia_de_IMG_3897-Editar_roaivf.jpg 800w,
+              https://res.cloudinary.com/dcio95v6m/image/upload/w_1600,q_auto,f_auto/v1781577112/Copia_de_IMG_3897-Editar_roaivf.jpg 1600w"
+      sizes="100vw"
+      alt="Familia disfrutando una sesión de fotos en la playa de Cancún"
+      fetchpriority="high">
+  </div>
+  <div class="hero__scrim"></div>
+  <div class="hero__content">
+    <span class="eyebrow">Fotografía familiar · Cancún</span>
+    <h1>Vuelve a casa con algo más que arena en los zapatos.</h1>
+    <p>Mereces un imán para el refri, sí — pero también recuerdos reales de tu familia relajada, feliz y presente en la playa.</p>
+    <div class="hero__cta">
+      <a href="#contacto" class="btn">Va, organicemos la sesión</a>
+      <span class="microcopy">Respondo por WhatsApp o Instagram en menos de 24h.</span>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true"><span></span>Desliza</div>
+</header>
+
+<div class="mist-divider" aria-hidden="true"></div>
+
+<!-- ============ PROBLEMA ============ -->
+<section class="problema">
+  <div class="container problema__grid">
+    <div class="reveal">
+      <span class="eyebrow">El problema real</span>
+      <h2>Las vacaciones no son un evento que se pueda controlar.</h2>
+    </div>
+    <div class="reveal">
+      <p>Cuando una familia sale de vacaciones a la playa, carga con la presión de que todo salga tal como lo imaginó. Pero llegan a un lugar que no conocen, con un clima y una luz que no controlan.</p>
+      <p>Esa necesidad de controlar cada detalle es justo lo que impide relajarse y disfrutar. Porque las vacaciones no son trabajo — y no deberían sentirse como uno.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESO ============ -->
+<section class="proceso">
+  <div class="container">
+    <div class="proceso__head reveal">
+      <span class="eyebrow">Cómo trabajamos</span>
+      <h2>Un proceso pensado para que tú solo disfrutes.</h2>
+      <p>Antes de cada sesión agendamos una videollamada: revisamos precios y cantidad de fotos, si quieres agregar el flying dress, y vemos en vivo cómo está la playa ese día. Al final resolvemos tus dudas y te recomendamos lugares para conocer.</p>
+    </div>
+    <div class="proceso__grid">
+      <div class="step reveal">
+        <div class="step__num">1</div>
+        <h3>Contacto</h3>
+        <p>Estás de vacaciones, no en la oficina. Escríbeme por WhatsApp, Instagram o donde te sea más cómodo. Me cuentas qué tienen en mente y comenzamos a organizar su sesión — sin formularios que parecen entrevista de trabajo.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step__num">2</div>
+        <h3>Reunión y reserva</h3>
+        <p>Antes de la sesión platicamos por llamada o Zoom. Elegimos la playa, el horario, te doy recomendaciones de ropa y algunos consejos para tus vacaciones. Si todo les convence, apartamos la fecha con contrato y anticipo.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step__num">3</div>
+        <h3>Entrega</h3>
+        <p>Entre 1 y 3 días después de la sesión recibirán una galería privada para elegir sus fotos favoritas — o yo puedo hacer la selección para agilizar todo. En 1 a 5 días tienen su link de descarga listo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROMESA ============ -->
+<section class="promesa">
+  <div class="container reveal">
+    <span class="eyebrow">La promesa</span>
+    <h2>Que la felicidad de esas vacaciones se quede con ustedes mucho después del vuelo de regreso.</h2>
+    <p>Más allá del imán para el refri, lo que se van a llevar es la relajación y la conexión familiar reflejadas en cada fotografía — para que cada vez que las vean, quieran volver a sentir eso mismo.</p>
+  </div>
+</section>
+
+<!-- ============ PORTAFOLIO ============ -->
+<section class="portafolio" id="portafolio">
+  <div class="container">
+    <div class="portafolio__head reveal">
+      <span class="eyebrow">Portafolio</span>
+      <h2>Familias reales, playas reales.</h2>
+      <p>Una muestra de sesiones recientes en las playas de Cancún. Toca cualquier foto para verla más grande.</p>
+    </div>
+    <div class="grid" id="portfolioGrid">
+      <figure class="tall reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1781577124/IMG_3900-Editar_evotobak_el2cll.jpg" alt="Sesión familiar en la playa - foto 1"></figure>
+      <figure class="reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1781577121/IMG_3906-Editar_evotobak_jprfd3.jpg" alt="Sesión familiar en la playa - foto 2"></figure>
+      <figure class="reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1781577120/IMG_3888-Editar_evotobak_hh5uzg.jpg" alt="Sesión familiar en la playa - foto 3"></figure>
+      <figure class="tall reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1781577124/Photo_from_2023-09-02_08-39-34-Editar_xlhtad.jpg" alt="Sesión familiar en la playa - foto 4"></figure>
+      <figure class="reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1781577124/Photo_from_2023-09-02_08-58-10-Editar_jy3xxa.jpg" alt="Sesión familiar en la playa - foto 5"></figure>
+      <figure class="reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1781577129/IMG_2790-Editar_zzrjr4.jpg" alt="Sesión familiar en la playa - foto 6"></figure>
+      <figure class="tall reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1781577120/IMG_2804-Editar_hxgugj.jpg" alt="Sesión familiar en la playa - foto 7"></figure>
+      <figure class="reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1781577119/IMG_2896-Editar_cg7e5r.jpg" alt="Sesión familiar en la playa - foto 8"></figure>
+      <figure class="reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1782415062/IMG_2338-Editar_ontshm.jpg" alt="Sesión familiar en la playa - foto 9"></figure>
+      <figure class="tall reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1782415061/IMG_2360-Editar_qcconc.jpg" alt="Sesión familiar en la playa - foto 10"></figure>
+      <figure class="reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1781577122/IMG_3932-Editar_evotobak_irpql9.jpg" alt="Sesión familiar en la playa - foto 11"></figure>
+      <figure class="reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1782415059/IMG_2332-Editar_dwhasd.jpg" alt="Sesión familiar en la playa - foto 12"></figure>
+    </div>
+  </div>
+</section>
+
+<div class="mist-divider" aria-hidden="true"></div>
+
+<!-- ============ SOBRE MÍ ============ -->
+<section class="sobre">
+  <div class="container sobre__grid">
+    <div class="sobre__photo reveal">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_800,q_auto,f_auto/v1781803369/WhatsApp_Image_2026-06-18_at_12.17.33_nwyigw.jpg" alt="Adriel Poot, fundador de Brumar">
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Sobre mí</span>
+      <h2>Podría hablarte de mí, pero prefiero que mis fotografías lo hagan.</h2>
+      <p class="lead">Mucho gusto, soy Adriel Poot — la persona detrás de Brumar.</p>
+      <p>Soy productor visual, egresado de la Escuela de Artes Visuales, y especialista en fotografía familiar de vacaciones en Cancún.</p>
+      <p>Al final, no buscas conocer mi historia completa — y si la quieres saber, te la cuento con gusto en la llamada. En realidad buscas saber si soy la persona indicada para dejar la responsabilidad de los recuerdos de tus vacaciones.</p>
+      <p class="sobre__quote">"Un gran poder conlleva una gran responsabilidad." — Tío Ben</p>
+      <div class="sobre__sig">Te dejo mi portafolio arriba. — Adriel</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRUEBA SOCIAL ============ -->
+<section class="social">
+  <div class="container reveal">
+    <div class="social__mark" aria-hidden="true">”</div>
+    <p>Decenas de familias ya confiaron en este proceso para disfrutar sus vacaciones mientras sus recuerdos quedaban en buenas manos.</p>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="cta-final" id="contacto">
+  <div class="container reveal">
+    <span class="eyebrow">¿Listos para su sesión?</span>
+    <h2>Organicemos los recuerdos de tus próximas vacaciones.</h2>
+    <!-- WHATSAPP: reemplaza 5219981234567 por tu número real con lada de país (52) + código de área -->
+    <a href="https://wa.me/5219981234567?text=Hola%20Adriel%2C%20quiero%20organizar%20una%20sesi%C3%B3n%20de%20fotos%20familiar%20en%20Canc%C3%BAn" class="btn" target="_blank" rel="noopener">Va, organicemos la sesión</a>
+    <span class="microcopy">Sin formularios ni compromiso. Respondo en menos de 24h.</span>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <img class="footer__logo" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_120,q_auto,f_auto/v1781577112/ISOTIPO-09_pgk5wl.png" alt="Brumar">
+    <div class="footer__social">
+      <!-- REDES: reemplaza los enlaces por tus perfiles reales -->
+      <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://wa.me/5219981234567" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <p class="fine">© 2026 Brumar — Fotografía familiar en Cancún. Tus datos solo se usan para responder tu mensaje, nunca se comparten con terceros.</p>
+  </div>
+</footer>
+
+<!-- ============ LIGHTBOX ============ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Vista ampliada de fotografía">
+  <button class="lightbox__close" id="lightboxClose" aria-label="Cerrar">&times;</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<!-- META PIXEL: pega aquí tu código de Meta Pixel (Business Manager → Events Manager) -->
+<!-- GOOGLE TAG: pega aquí tu Google Tag / GA4 (analytics.google.com) -->
+<!-- TIKTOK PIXEL: pega aquí tu TikTok Pixel (TikTok Ads Manager → Assets → Events) -->
+<!-- CONVERSIONS API: pega aquí el script de CAPI (Business Manager → Events Manager → CAPI) -->
+<!-- Regla de oro: si por ahora no vas a hacer ads, no instales ningún pixel todavía. -->
+
+<script>
+  // Nav: fondo sólido al hacer scroll
+  const nav = document.getElementById('siteNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('is-solid', window.scrollY > 40);
+  }, { passive:true });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+  }, { threshold:0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Lightbox
+  const grid = document.getElementById('portfolioGrid');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  grid.addEventListener('click', (e) => {
+    const img = e.target.closest('img');
+    if (!img) return;
+    lightboxImg.src = img.src.replace('w_700', 'w_1400');
+    lightboxImg.alt = img.alt;
+    lightbox.classList.add('is-open');
+  });
+  function closeLightbox(){ lightbox.classList.remove('is-open'); lightboxImg.src=''; }
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+
+</body>
+</html>
