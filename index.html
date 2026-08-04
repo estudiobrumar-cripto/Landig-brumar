@@ -141,64 +141,72 @@
   /* ===================== HERO ===================== */
   .hero{
     position:relative;
+    display:grid;
+    grid-template-columns:1fr;
     min-height:100svh;
+  }
+  @media (min-width:900px){
+    .hero{grid-template-columns:0.92fr 1.08fr; min-height:100vh;}
+  }
+  .hero__text{
+    order:2;
     display:flex;
-    align-items:flex-end;
-    padding:0;
+    flex-direction:column;
+    justify-content:center;
+    background:var(--cream);
+    padding:52px var(--space-s) 56px;
   }
-  .hero__media{position:absolute;inset:0;overflow:hidden;}
-  .hero__media img{width:100%;height:100%;object-fit:cover;object-position:center 30%;}
-  .hero__scrim{
-    position:absolute;inset:0;
-    background:linear-gradient(180deg, rgba(30,26,22,.38) 0%, rgba(30,26,22,.22) 30%, rgba(30,26,22,.85) 100%);
+  @media (min-width:900px){
+    .hero__text{order:1; padding:0 5vw; max-width:640px; margin-left:auto;}
   }
-  .hero__content{
+  .hero__media{
+    order:1;
     position:relative;
-    z-index:2;
-    width:100%;
-    padding:0 var(--space-s) 64px;
-    max-width:1180px;
-    margin:0 auto;
-    color:var(--cream);
+    overflow:hidden;
+    height:56vh;
   }
-  .hero__card{
-    display:inline-block;
-    max-width:640px;
-    background:rgba(28,24,20,.42);
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-    border:1px solid rgba(245,240,232,.14);
-    border-radius:20px;
-    padding:28px 30px;
+  @media (min-width:900px){
+    .hero__media{order:2; height:auto;}
   }
-  @media (max-width:640px){.hero__card{padding:22px 20px; border-radius:16px;}}
-  .hero__content .eyebrow{color:#F0D9C2;}
+  .hero__media img{width:100%;height:100%;object-fit:cover;object-position:center 30%;}
+  .hero__media::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(0deg, rgba(30,26,22,.28) 0%, transparent 45%);
+    pointer-events:none;
+  }
+  @media (min-width:900px){
+    .hero__media::after{background:linear-gradient(90deg, rgba(30,26,22,.14) 0%, transparent 22%);}
+  }
+
+  .hero__text .eyebrow{color:var(--terracotta-deep);}
   .hero h1{
-    font-size:clamp(32px, 6.2vw, 66px);
-    max-width:16ch;
-    color:var(--white);
-    text-shadow:0 2px 18px rgba(0,0,0,.35);
+    font-size:clamp(32px, 4.6vw, 56px);
+    max-width:14ch;
+    color:var(--ink);
   }
   .hero p{
     margin-top:20px;
-    font-size:clamp(16px, 2vw, 19px);
+    font-size:clamp(16px, 1.6vw, 18px);
     max-width:46ch;
-    color:rgba(245,240,232,.95);
+    color:var(--ink-soft);
     font-weight:300;
   }
   .hero__cta{margin-top:32px;}
-  .hero__cta .microcopy{color:rgba(245,240,232,.75);}
+  .hero__cta .microcopy{color:var(--ink-soft);}
   .hero__alt, .cta-final__alt{margin-top:14px;}
-  .hero__alt a{font-size:14px; font-weight:600; color:var(--cream); text-decoration:underline; text-underline-offset:3px; opacity:.9;}
+  .hero__alt a{font-size:14px; font-weight:600; color:var(--ink); text-decoration:underline; text-underline-offset:3px; opacity:.8;}
   .hero__alt a:hover{opacity:1;}
   .cta-final__alt a{font-size:14px; font-weight:600; color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
 
   .scroll-hint{
     position:absolute; bottom:22px; left:50%; transform:translateX(-50%);
-    z-index:2; color:var(--cream); opacity:.75;
+    z-index:2; color:var(--cream); opacity:.85;
     display:flex; flex-direction:column; align-items:center; gap:6px;
     font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+    display:none;
   }
+  @media (min-width:900px){.scroll-hint{display:flex; left:auto; right:26px; bottom:26px; transform:none;}}
   .scroll-hint span{width:1px;height:26px;background:currentColor;animation:scrollDown 1.8s ease-in-out infinite;}
   @keyframes scrollDown{0%{opacity:0; transform:scaleY(.3); transform-origin:top;}50%{opacity:1;transform:scaleY(1);transform-origin:top;}100%{opacity:0;transform:scaleY(.3);transform-origin:bottom;}}
 
@@ -571,28 +579,25 @@
 
 <!-- ============ HERO ============ -->
 <header class="hero" id="top">
+  <div class="hero__text">
+    <span class="eyebrow">Fotografía familiar · Cancún</span>
+    <h1>Vuelve a casa con algo más que arena en los zapatos.</h1>
+    <p>Mereces un imán para el refri, sí — pero también recuerdos reales de tu familia relajada, feliz y presente en la playa.</p>
+    <div class="hero__cta">
+      <button type="button" class="btn" data-cal-link="estudiobrumar/secret" data-cal-config='{"layout":"month_view"}'>Va, organicemos la sesión</button>
+      <div class="hero__alt">
+        <a href="https://api.whatsapp.com/send?phone=+529982247502&text=%C2%A1Hola!%20%F0%9F%91%8B%20Me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20las%20sesiones%20de%20fotos." target="_blank" rel="noopener">o escríbenos por WhatsApp</a>
+      </div>
+    </div>
+  </div>
   <div class="hero__media">
     <img
       src="https://res.cloudinary.com/dcio95v6m/image/upload/w_1600,q_auto,f_auto/v1781577112/Copia_de_IMG_3897-Editar_roaivf.jpg"
       srcset="https://res.cloudinary.com/dcio95v6m/image/upload/w_800,q_auto,f_auto/v1781577112/Copia_de_IMG_3897-Editar_roaivf.jpg 800w,
               https://res.cloudinary.com/dcio95v6m/image/upload/w_1600,q_auto,f_auto/v1781577112/Copia_de_IMG_3897-Editar_roaivf.jpg 1600w"
-      sizes="100vw"
+      sizes="(min-width:900px) 55vw, 100vw"
       alt="Familia disfrutando una sesión de fotos en la playa de Cancún"
       fetchpriority="high">
-  </div>
-  <div class="hero__scrim"></div>
-  <div class="hero__content">
-    <div class="hero__card">
-      <span class="eyebrow">Fotografía familiar · Cancún</span>
-      <h1>Vuelve a casa con algo más que arena en los zapatos.</h1>
-      <p>Mereces un imán para el refri, sí — pero también recuerdos reales de tu familia relajada, feliz y presente en la playa.</p>
-      <div class="hero__cta">
-        <button type="button" class="btn" data-cal-link="estudiobrumar/secret" data-cal-config='{"layout":"month_view"}'>Va, organicemos la sesión</button>
-        <div class="hero__alt">
-          <a href="https://api.whatsapp.com/send?phone=+529982247502&text=%C2%A1Hola!%20%F0%9F%91%8B%20Me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20las%20sesiones%20de%20fotos." target="_blank" rel="noopener">o escríbenos por WhatsApp</a>
-        </div>
-      </div>
-    </div>
   </div>
   <div class="scroll-hint" aria-hidden="true"><span></span>Desliza</div>
 </header>
