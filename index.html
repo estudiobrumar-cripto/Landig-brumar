@@ -398,26 +398,44 @@
   .portafolio__head{max-width:640px; margin-bottom:var(--space-l);}
   .portafolio__head h2{font-size:clamp(26px,4vw,40px);}
   .portafolio__head p{margin-top:14px; color:var(--ink-soft);}
-  .grid{
-    display:grid;
-    gap:12px;
-    grid-template-columns:repeat(2,1fr);
+
+  /* Carrusel: cada foto conserva su orientación real (vertical u horizontal), sin recortes */
+  .carousel-wrap{position:relative;}
+  .carousel{
+    display:flex;
+    gap:14px;
+    overflow-x:auto;
+    scroll-snap-type:x proximity;
+    padding-bottom:10px;
+    scrollbar-width:thin;
+    scrollbar-color:var(--sand) transparent;
   }
-  @media (min-width:720px){
-    .grid{grid-template-columns:repeat(4,1fr); grid-auto-rows:210px;}
-    .grid .tall{grid-row:span 2;}
-  }
-  .grid figure{
-    position:relative;
-    overflow:hidden;
+  .carousel::-webkit-scrollbar{height:6px;}
+  .carousel::-webkit-scrollbar-thumb{background:var(--sand); border-radius:100px;}
+  .carousel figure{
+    flex:0 0 auto;
+    height:340px;
+    scroll-snap-align:start;
     border-radius:14px;
-    aspect-ratio:3/4;
+    overflow:hidden;
     cursor:pointer;
-    background:var(--sand);
+    background:var(--cream-deep);
   }
-  @media (min-width:720px){.grid figure{aspect-ratio:auto; height:100%;}}
-  .grid img{width:100%;height:100%;object-fit:cover; transition:transform .6s ease;}
-  .grid figure:hover img{transform:scale(1.06);}
+  @media (min-width:720px){.carousel figure{height:440px;}}
+  .carousel img{height:100%; width:auto; display:block; transition:transform .5s ease;}
+  .carousel figure:hover img{transform:scale(1.04);}
+
+  .carousel__nav{display:flex; gap:10px; margin-top:18px;}
+  .carousel__nav button{
+    width:44px; height:44px; border-radius:50%;
+    border:1.5px solid var(--ink); background:transparent;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; font-size:18px; color:var(--ink);
+    transition:background .2s ease, color .2s ease;
+  }
+  .carousel__nav button:hover{background:var(--ink); color:var(--cream);}
+
+  .portafolio__footer{margin-top:30px; text-align:center;}
 
   /* Lightbox */
   .lightbox{
@@ -432,6 +450,36 @@
   .lightbox__close{
     position:absolute; top:20px; right:24px;
     background:none;border:none;color:var(--cream);font-size:32px;cursor:pointer;line-height:1;
+  }
+
+  /* Modal portafolio completo (masonry, tampoco recorta) */
+  .full-modal{
+    position:fixed; inset:0; z-index:210;
+    background:rgba(20,18,16,.92);
+    display:none; align-items:flex-start; justify-content:center;
+    padding:40px 20px;
+    overflow-y:auto;
+  }
+  .full-modal.is-open{display:flex;}
+  .full-modal__panel{
+    background:var(--cream);
+    border-radius:20px;
+    max-width:1040px; width:100%;
+    padding:30px;
+    position:relative;
+  }
+  .full-modal__close{
+    position:absolute; top:16px; right:18px;
+    background:none; border:none; font-size:28px; line-height:1; cursor:pointer; color:var(--ink);
+    z-index:2;
+  }
+  .full-modal h3{font-family:var(--font-display); font-size:26px; margin-bottom:20px;}
+  .masonry{columns:2 180px; column-gap:12px;}
+  @media (min-width:720px){.masonry{columns:4 220px;}}
+  .masonry img{
+    width:100%; display:block; margin-bottom:12px;
+    border-radius:12px; cursor:pointer;
+    break-inside:avoid;
   }
 
   /* ===================== SOBRE MÍ ===================== */
@@ -462,6 +510,8 @@
     font-size:15px;
   }
   .sobre__sig{margin-top:22px; font-family:var(--font-display); font-size:19px;}
+  .sobre__footer{margin-top:30px;}
+  .sobre .btn-ghost{border-color:var(--ink);}
 
   /* ===================== PRUEBA SOCIAL ===================== */
   .social{background:var(--cream); text-align:center;}
@@ -672,22 +722,61 @@
       <h2>Familias reales, playas reales.</h2>
       <p>Una muestra de sesiones recientes en las playas de Cancún. Toca cualquier foto para verla más grande.</p>
     </div>
-    <div class="grid" id="portfolioGrid">
-      <figure class="tall reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1781577124/IMG_3900-Editar_evotobak_el2cll.jpg" alt="Sesión familiar en la playa - foto 1"></figure>
-      <figure class="reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1781577121/IMG_3906-Editar_evotobak_jprfd3.jpg" alt="Sesión familiar en la playa - foto 2"></figure>
-      <figure class="reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1781577120/IMG_3888-Editar_evotobak_hh5uzg.jpg" alt="Sesión familiar en la playa - foto 3"></figure>
-      <figure class="tall reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1781577124/Photo_from_2023-09-02_08-39-34-Editar_xlhtad.jpg" alt="Sesión familiar en la playa - foto 4"></figure>
-      <figure class="reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1781577124/Photo_from_2023-09-02_08-58-10-Editar_jy3xxa.jpg" alt="Sesión familiar en la playa - foto 5"></figure>
-      <figure class="reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1781577129/IMG_2790-Editar_zzrjr4.jpg" alt="Sesión familiar en la playa - foto 6"></figure>
-      <figure class="tall reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1781577120/IMG_2804-Editar_hxgugj.jpg" alt="Sesión familiar en la playa - foto 7"></figure>
-      <figure class="reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1781577119/IMG_2896-Editar_cg7e5r.jpg" alt="Sesión familiar en la playa - foto 8"></figure>
-      <figure class="reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1782415062/IMG_2338-Editar_ontshm.jpg" alt="Sesión familiar en la playa - foto 9"></figure>
-      <figure class="tall reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1782415061/IMG_2360-Editar_qcconc.jpg" alt="Sesión familiar en la playa - foto 10"></figure>
-      <figure class="reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1781577122/IMG_3932-Editar_evotobak_irpql9.jpg" alt="Sesión familiar en la playa - foto 11"></figure>
-      <figure class="reveal"><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_700,q_auto,f_auto/v1782415059/IMG_2332-Editar_dwhasd.jpg" alt="Sesión familiar en la playa - foto 12"></figure>
+    <div class="carousel-wrap reveal">
+      <div class="carousel" id="portfolioCarousel">
+        <figure><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,h_800/v1781577124/IMG_3900-Editar_evotobak_el2cll.jpg" alt="Sesión familiar en la playa - foto 1"></figure>
+        <figure><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,h_800/v1781577121/IMG_3906-Editar_evotobak_jprfd3.jpg" alt="Sesión familiar en la playa - foto 2"></figure>
+        <figure><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,h_800/v1781577120/IMG_3888-Editar_evotobak_hh5uzg.jpg" alt="Sesión familiar en la playa - foto 3"></figure>
+        <figure><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,h_800/v1781577124/Photo_from_2023-09-02_08-39-34-Editar_xlhtad.jpg" alt="Sesión familiar en la playa - foto 4"></figure>
+        <figure><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,h_800/v1781577124/Photo_from_2023-09-02_08-58-10-Editar_jy3xxa.jpg" alt="Sesión familiar en la playa - foto 5"></figure>
+        <figure><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,h_800/v1781577129/IMG_2790-Editar_zzrjr4.jpg" alt="Sesión familiar en la playa - foto 6"></figure>
+        <figure><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,h_800/v1781577120/IMG_2804-Editar_hxgugj.jpg" alt="Sesión familiar en la playa - foto 7"></figure>
+        <figure><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,h_800/v1781577119/IMG_2896-Editar_cg7e5r.jpg" alt="Sesión familiar en la playa - foto 8"></figure>
+        <figure><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,h_800/v1782415062/IMG_2338-Editar_ontshm.jpg" alt="Sesión familiar en la playa - foto 9"></figure>
+        <figure><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,h_800/v1782415061/IMG_2360-Editar_qcconc.jpg" alt="Sesión familiar en la playa - foto 10"></figure>
+        <figure><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,h_800/v1781577122/IMG_3932-Editar_evotobak_irpql9.jpg" alt="Sesión familiar en la playa - foto 11"></figure>
+        <figure><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,h_800/v1782415059/IMG_2332-Editar_dwhasd.jpg" alt="Sesión familiar en la playa - foto 12"></figure>
+      </div>
+      <div class="carousel__nav">
+        <button type="button" id="carPrev" aria-label="Anterior">&larr;</button>
+        <button type="button" id="carNext" aria-label="Siguiente">&rarr;</button>
+      </div>
+    </div>
+    <div class="portafolio__footer">
+      <button type="button" class="btn btn-ghost" id="openFullPortfolio1">Ver portafolio completo</button>
     </div>
   </div>
 </section>
+
+<!-- Modal de portafolio completo -->
+<div class="full-modal" id="fullPortfolioModal" role="dialog" aria-modal="true" aria-label="Portafolio completo">
+  <div class="full-modal__panel">
+    <button class="full-modal__close" id="fullPortfolioClose" aria-label="Cerrar">&times;</button>
+    <h3>Portafolio completo</h3>
+    <div class="masonry" id="fullPortfolioGrid">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,w_500/v1781577124/IMG_3900-Editar_evotobak_el2cll.jpg" alt="Foto de portafolio 1">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,w_500/v1781577122/IMG_3932-Editar_evotobak_irpql9.jpg" alt="Foto de portafolio 2">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,w_500/v1781577121/IMG_3906-Editar_evotobak_jprfd3.jpg" alt="Foto de portafolio 3">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,w_500/v1781577121/IMG_3896-Editar_evotobak_dyiknf.jpg" alt="Foto de portafolio 4">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,w_500/v1781577120/IMG_3888-Editar_evotobak_hh5uzg.jpg" alt="Foto de portafolio 5">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,w_500/v1781805467/Photo_from_2023-09-02_08-43-19-2_th3ync.jpg" alt="Foto de portafolio 6">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,w_500/v1781577124/Photo_from_2023-09-02_08-39-34-Editar_xlhtad.jpg" alt="Foto de portafolio 7">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,w_500/v1781577123/Photo_from_2023-09-02_08-40-04-Editar_dtsqtj.jpg" alt="Foto de portafolio 8">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,w_500/v1781577124/Photo_from_2023-09-02_08-58-10-Editar_jy3xxa.jpg" alt="Foto de portafolio 9">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,w_500/v1781577122/Photo_from_2023-09-02_08-38-22-Editar_qao4ti.jpg" alt="Foto de portafolio 10">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,w_500/v1781577129/IMG_2790-Editar_zzrjr4.jpg" alt="Foto de portafolio 11">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,w_500/v1781577121/IMG_2893-Editar_dh7uqh.jpg" alt="Foto de portafolio 12">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,w_500/v1781577120/IMG_2804-Editar_hxgugj.jpg" alt="Foto de portafolio 13">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,w_500/v1781577120/IMG_2911-Editar_idqxra.jpg" alt="Foto de portafolio 14">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,w_500/v1781577119/IMG_2896-Editar_cg7e5r.jpg" alt="Foto de portafolio 15">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,w_500/v1782415063/IMG_2315-Editar_bdipaf.jpg" alt="Foto de portafolio 16">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,w_500/v1782415062/IMG_2338-Editar_ontshm.jpg" alt="Foto de portafolio 17">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,w_500/v1782415061/IMG_2358-Editar_bqiqpt.jpg" alt="Foto de portafolio 18">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,w_500/v1782415061/IMG_2360-Editar_qcconc.jpg" alt="Foto de portafolio 19">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,w_500/v1782415059/IMG_2332-Editar_dwhasd.jpg" alt="Foto de portafolio 20">
+    </div>
+  </div>
+</div>
 
 <div class="mist-divider" aria-hidden="true"></div>
 
@@ -701,10 +790,13 @@
       <span class="eyebrow">Sobre mí</span>
       <h2>Podría hablarte de mí, pero prefiero que mis fotografías lo hagan.</h2>
       <p class="lead">Mucho gusto, soy Adriel Poot — la persona detrás de Brumar.</p>
-      <p>Soy productor visual, egresado de la Escuela de Artes Visuales, y especialista en fotografía familiar de vacaciones en Cancún.</p>
-      <p>Al final, no buscas conocer mi historia completa — y si la quieres saber, te la cuento con gusto en la llamada. En realidad buscas saber si soy la persona indicada para dejar la responsabilidad de los recuerdos de tus vacaciones.</p>
-      <p class="sobre__quote">"Un gran poder conlleva una gran responsabilidad." — Tío Ben</p>
-      <div class="sobre__sig">Te dejo mi portafolio arriba. — Adriel</div>
+      <p>Productor visual egresado de la Escuela de Artes Visuales, especialista en fotografía familiar de vacaciones en Cancún.</p>
+      <p>Al final, no buscas conocer mi historia — y si la quieres saber, te la puedo contar en la llamada. Pero en realidad buscas saber si soy la persona indicada para dejar la gran responsabilidad de los recuerdos de tus vacaciones.</p>
+      <p class="sobre__quote">Porque como dijo el tío Ben en Spiderman: "¡Un gran poder conlleva una gran responsabilidad!"</p>
+      <div class="sobre__sig">Te dejo mi portafolio.</div>
+      <div class="sobre__footer">
+        <button type="button" class="btn btn-ghost" id="openFullPortfolio2">Ver portafolio completo</button>
+      </div>
     </div>
   </div>
 </section>
@@ -845,21 +937,47 @@
   fdModal.addEventListener('click', (e) => { if (e.target === fdModal) closeFdModal(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeFdModal(); });
 
-  // Lightbox
-  const grid = document.getElementById('portfolioGrid');
+  // Lightbox (funciona para el carrusel y el portafolio completo)
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
-  grid.addEventListener('click', (e) => {
-    const img = e.target.closest('img');
-    if (!img) return;
-    lightboxImg.src = img.src.replace('w_700', 'w_1400');
+  function bigUrl(src){ return src.replace(/\/upload\/[^/]+\//, '/upload/q_auto,f_auto,w_1600/'); }
+  function openLightbox(img){
+    lightboxImg.src = bigUrl(img.src);
     lightboxImg.alt = img.alt;
     lightbox.classList.add('is-open');
-  });
+  }
   function closeLightbox(){ lightbox.classList.remove('is-open'); lightboxImg.src=''; }
   document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
+  // Carrusel de portafolio
+  const carousel = document.getElementById('portfolioCarousel');
+  carousel.addEventListener('click', (e) => {
+    const img = e.target.closest('img');
+    if (img) openLightbox(img);
+  });
+  document.getElementById('carPrev').addEventListener('click', () => {
+    carousel.scrollBy({ left: -360, behavior:'smooth' });
+  });
+  document.getElementById('carNext').addEventListener('click', () => {
+    carousel.scrollBy({ left: 360, behavior:'smooth' });
+  });
+
+  // Modal de portafolio completo
+  const fullModal = document.getElementById('fullPortfolioModal');
+  const fullGrid = document.getElementById('fullPortfolioGrid');
+  function openFullPortfolio(){ fullModal.classList.add('is-open'); }
+  function closeFullPortfolio(){ fullModal.classList.remove('is-open'); }
+  document.getElementById('openFullPortfolio1').addEventListener('click', openFullPortfolio);
+  document.getElementById('openFullPortfolio2').addEventListener('click', openFullPortfolio);
+  document.getElementById('fullPortfolioClose').addEventListener('click', closeFullPortfolio);
+  fullModal.addEventListener('click', (e) => { if (e.target === fullModal) closeFullPortfolio(); });
+  fullGrid.addEventListener('click', (e) => {
+    const img = e.target.closest('img');
+    if (img) openLightbox(img);
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeFullPortfolio(); });
 </script>
 
 </body>
