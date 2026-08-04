@@ -143,45 +143,44 @@
     position:relative;
     display:grid;
     grid-template-columns:1fr;
-    min-height:100svh;
+    background:var(--cream);
+    padding:120px var(--space-s) 48px;
+    gap:36px;
   }
   @media (min-width:900px){
-    .hero{grid-template-columns:0.92fr 1.08fr; min-height:100vh;}
+    .hero{
+      grid-template-columns:0.95fr 1.05fr;
+      align-items:center;
+      min-height:100vh;
+      padding:120px 6vw 60px;
+      gap:60px;
+    }
   }
   .hero__text{
     order:2;
     display:flex;
     flex-direction:column;
     justify-content:center;
-    background:var(--cream);
-    padding:52px var(--space-s) 56px;
   }
   @media (min-width:900px){
-    .hero__text{order:1; padding:0 5vw; max-width:640px; margin-left:auto;}
+    .hero__text{order:1; max-width:520px;}
   }
   .hero__media{
     order:1;
     position:relative;
     overflow:hidden;
-    height:56vh;
+    border-radius:26px;
+    aspect-ratio:4/5;
+    box-shadow:0 30px 60px -22px rgba(44,40,35,.32);
   }
   @media (min-width:900px){
-    .hero__media{order:2; height:auto;}
+    .hero__media{order:2; aspect-ratio:auto; height:min(78vh, 720px);}
   }
   .hero__media img{width:100%;height:100%;object-fit:cover;object-position:center 30%;}
-  .hero__media::after{
-    content:"";
-    position:absolute; inset:0;
-    background:linear-gradient(0deg, rgba(30,26,22,.28) 0%, transparent 45%);
-    pointer-events:none;
-  }
-  @media (min-width:900px){
-    .hero__media::after{background:linear-gradient(90deg, rgba(30,26,22,.14) 0%, transparent 22%);}
-  }
 
   .hero__text .eyebrow{color:var(--terracotta-deep);}
   .hero h1{
-    font-size:clamp(32px, 4.6vw, 56px);
+    font-size:clamp(30px, 4.4vw, 54px);
     max-width:14ch;
     color:var(--ink);
   }
@@ -199,14 +198,7 @@
   .hero__alt a:hover{opacity:1;}
   .cta-final__alt a{font-size:14px; font-weight:600; color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
 
-  .scroll-hint{
-    position:absolute; bottom:22px; left:50%; transform:translateX(-50%);
-    z-index:2; color:var(--cream); opacity:.85;
-    display:flex; flex-direction:column; align-items:center; gap:6px;
-    font-size:11px; letter-spacing:.12em; text-transform:uppercase;
-    display:none;
-  }
-  @media (min-width:900px){.scroll-hint{display:flex; left:auto; right:26px; bottom:26px; transform:none;}}
+  .scroll-hint{display:none;}
   .scroll-hint span{width:1px;height:26px;background:currentColor;animation:scrollDown 1.8s ease-in-out infinite;}
   @keyframes scrollDown{0%{opacity:0; transform:scaleY(.3); transform-origin:top;}50%{opacity:1;transform:scaleY(1);transform-origin:top;}100%{opacity:0;transform:scaleY(.3);transform-origin:bottom;}}
 
@@ -427,37 +419,35 @@
   .carousel-wrap{position:relative;}
   .carousel{
     display:flex;
-    gap:14px;
+    gap:10px;
     overflow-x:auto;
-    scroll-snap-type:x proximity;
-    padding-bottom:10px;
-    scrollbar-width:thin;
-    scrollbar-color:var(--sand) transparent;
+    scroll-snap-type:x mandatory;
+    padding-bottom:6px;
+    scrollbar-width:none;
   }
-  .carousel::-webkit-scrollbar{height:6px;}
-  .carousel::-webkit-scrollbar-thumb{background:var(--sand); border-radius:100px;}
+  .carousel::-webkit-scrollbar{display:none;}
   .carousel figure{
     flex:0 0 auto;
-    height:340px;
+    height:190px;
     scroll-snap-align:start;
     border-radius:14px;
     overflow:hidden;
     cursor:pointer;
     background:var(--cream-deep);
   }
-  @media (min-width:720px){.carousel figure{height:440px;}}
+  @media (min-width:720px){.carousel figure{height:250px;}}
   .carousel img{height:100%; width:auto; display:block; transition:transform .5s ease;}
   .carousel figure:hover img{transform:scale(1.04);}
 
-  .carousel__nav{display:flex; gap:10px; margin-top:18px;}
-  .carousel__nav button{
-    width:44px; height:44px; border-radius:50%;
-    border:1.5px solid var(--ink); background:transparent;
-    display:flex; align-items:center; justify-content:center;
-    cursor:pointer; font-size:18px; color:var(--ink);
-    transition:background .2s ease, color .2s ease;
+  .carousel__dots{display:flex; justify-content:center; gap:8px; margin-top:22px;}
+  .carousel__dots button{
+    width:8px; height:8px; border-radius:50%;
+    border:none; background:var(--sand); padding:0; cursor:pointer;
+    transition:background .2s ease, transform .2s ease;
   }
-  .carousel__nav button:hover{background:var(--ink); color:var(--cream);}
+  .carousel__dots button.is-active{background:var(--terracotta); transform:scale(1.3);}
+
+  .carousel__nav{display:none;}
 
   .portafolio__footer{margin-top:30px; text-align:center;}
 
@@ -630,17 +620,17 @@
       <div class="step reveal">
         <div class="step__num">1</div>
         <h3>Contacto</h3>
-        <p>Estás de vacaciones, no en la oficina. Escríbeme por WhatsApp, Instagram o donde te sea más cómodo. Me cuentas qué tienen en mente y comenzamos a organizar su sesión — sin formularios que parecen entrevista de trabajo.</p>
+        <p>Escríbeme por WhatsApp o Instagram y cuéntame qué tienen en mente. Nada de formularios que parecen entrevista de trabajo.</p>
       </div>
       <div class="step reveal">
         <div class="step__num">2</div>
         <h3>Reunión y reserva</h3>
-        <p>Antes de la sesión platicamos por llamada o Zoom. Elegimos la playa, el horario, te doy recomendaciones de ropa y algunos consejos para tus vacaciones. Si todo les convence, apartamos la fecha con contrato y anticipo.</p>
+        <p>Platicamos por llamada: elegimos playa, horario y te doy tips de vestuario. Si les convence, apartamos la fecha con contrato y anticipo.</p>
       </div>
       <div class="step reveal">
         <div class="step__num">3</div>
         <h3>Entrega</h3>
-        <p>Entre 1 y 3 días después de la sesión recibirán una galería privada para elegir sus fotos favoritas — o yo puedo hacer la selección para agilizar todo. En 1 a 5 días tienen su link de descarga listo.</p>
+        <p>En 1-3 días te mando una galería privada para elegir tus favoritas (o la hago yo). Tu link de descarga está listo en máximo 5 días.</p>
       </div>
     </div>
   </div>
@@ -762,10 +752,7 @@
         <figure><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,h_800/v1781577122/IMG_3932-Editar_evotobak_irpql9.jpg" alt="Sesión familiar en la playa - foto 11"></figure>
         <figure><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,h_800/v1782415059/IMG_2332-Editar_dwhasd.jpg" alt="Sesión familiar en la playa - foto 12"></figure>
       </div>
-      <div class="carousel__nav">
-        <button type="button" id="carPrev" aria-label="Anterior">&larr;</button>
-        <button type="button" id="carNext" aria-label="Siguiente">&rarr;</button>
-      </div>
+      <div class="carousel__dots" id="carDots"></div>
     </div>
     <div class="portafolio__footer">
       <button type="button" class="btn btn-ghost" id="openFullPortfolio1">Ver portafolio completo</button>
@@ -1018,16 +1005,70 @@
 
   // Carrusel de portafolio
   const carousel = document.getElementById('portfolioCarousel');
+  const carFigures = Array.from(carousel.querySelectorAll('figure'));
+  const carDots = document.getElementById('carDots');
+
   carousel.addEventListener('click', (e) => {
     const img = e.target.closest('img');
     if (img) openLightbox(img);
   });
-  document.getElementById('carPrev').addEventListener('click', () => {
-    carousel.scrollBy({ left: -360, behavior:'smooth' });
+
+  // Puntos de paginación
+  carFigures.forEach((fig, i) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.setAttribute('aria-label', `Ir a la foto ${i + 1}`);
+    if (i === 0) dot.classList.add('is-active');
+    dot.addEventListener('click', () => {
+      fig.scrollIntoView({ behavior:'smooth', inline:'start', block:'nearest' });
+    });
+    carDots.appendChild(dot);
   });
-  document.getElementById('carNext').addEventListener('click', () => {
-    carousel.scrollBy({ left: 360, behavior:'smooth' });
+  const dotEls = Array.from(carDots.children);
+
+  function setActiveDot(){
+    const center = carousel.scrollLeft + carousel.clientWidth / 3;
+    let closest = 0, min = Infinity;
+    carFigures.forEach((fig, i) => {
+      const dist = Math.abs(fig.offsetLeft - carousel.scrollLeft);
+      if (dist < min) { min = dist; closest = i; }
+    });
+    dotEls.forEach((d, i) => d.classList.toggle('is-active', i === closest));
+    return closest;
+  }
+  let scrollTicking = false;
+  carousel.addEventListener('scroll', () => {
+    if (!scrollTicking) {
+      requestAnimationFrame(() => { setActiveDot(); scrollTicking = false; });
+      scrollTicking = true;
+    }
   });
+
+  // Autoplay: avanza sola cada 3.5s y hace loop; se pausa al interactuar
+  let carAutoplay;
+  function goToIndex(i){
+    const fig = carFigures[(i + carFigures.length) % carFigures.length];
+    fig.scrollIntoView({ behavior:'smooth', inline:'start', block:'nearest' });
+  }
+  function startAutoplay(){
+    carAutoplay = setInterval(() => {
+      const current = setActiveDot();
+      goToIndex(current + 1);
+    }, 3500);
+  }
+  function pauseAutoplay(){
+    clearInterval(carAutoplay);
+  }
+  let resumeTimer;
+  function pauseThenResume(){
+    pauseAutoplay();
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(startAutoplay, 5000);
+  }
+  ['mouseenter','touchstart','pointerdown','wheel'].forEach(evt => {
+    carousel.addEventListener(evt, pauseThenResume, { passive:true });
+  });
+  startAutoplay();
 
   // Modal de portafolio completo
   const fullModal = document.getElementById('fullPortfolioModal');
