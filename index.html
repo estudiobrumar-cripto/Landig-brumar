@@ -150,7 +150,7 @@
   .hero__media img{width:100%;height:100%;object-fit:cover;object-position:center 30%;}
   .hero__scrim{
     position:absolute;inset:0;
-    background:linear-gradient(180deg, rgba(44,40,35,.15) 0%, rgba(44,40,35,.10) 35%, rgba(44,40,35,.72) 100%);
+    background:linear-gradient(180deg, rgba(30,26,22,.38) 0%, rgba(30,26,22,.22) 30%, rgba(30,26,22,.85) 100%);
   }
   .hero__content{
     position:relative;
@@ -161,17 +161,29 @@
     margin:0 auto;
     color:var(--cream);
   }
-  .hero__content .eyebrow{color:#E7C9AE;}
+  .hero__card{
+    display:inline-block;
+    max-width:640px;
+    background:rgba(28,24,20,.42);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border:1px solid rgba(245,240,232,.14);
+    border-radius:20px;
+    padding:28px 30px;
+  }
+  @media (max-width:640px){.hero__card{padding:22px 20px; border-radius:16px;}}
+  .hero__content .eyebrow{color:#F0D9C2;}
   .hero h1{
-    font-size:clamp(34px, 6.2vw, 68px);
+    font-size:clamp(32px, 6.2vw, 66px);
     max-width:16ch;
     color:var(--white);
+    text-shadow:0 2px 18px rgba(0,0,0,.35);
   }
   .hero p{
     margin-top:20px;
     font-size:clamp(16px, 2vw, 19px);
     max-width:46ch;
-    color:rgba(245,240,232,.92);
+    color:rgba(245,240,232,.95);
     font-weight:300;
   }
   .hero__cta{margin-top:32px;}
@@ -570,14 +582,15 @@
   </div>
   <div class="hero__scrim"></div>
   <div class="hero__content">
-    <span class="eyebrow">Fotografía familiar · Cancún</span>
-    <h1>Vuelve a casa con algo más que arena en los zapatos.</h1>
-    <p>Mereces un imán para el refri, sí — pero también recuerdos reales de tu familia relajada, feliz y presente en la playa.</p>
-    <div class="hero__cta">
-      <button type="button" class="btn" data-cal-link="estudiobrumar/secret" data-cal-config='{"layout":"month_view"}'>Va, organicemos la sesión</button>
-      <span class="microcopy">Respondo por WhatsApp o Instagram en menos de 24h.</span>
-      <div class="hero__alt">
-        <a href="https://api.whatsapp.com/send?phone=+529982247502&text=%C2%A1Hola!%20%F0%9F%91%8B%20Me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20las%20sesiones%20de%20fotos." target="_blank" rel="noopener">o escríbenos por WhatsApp</a>
+    <div class="hero__card">
+      <span class="eyebrow">Fotografía familiar · Cancún</span>
+      <h1>Vuelve a casa con algo más que arena en los zapatos.</h1>
+      <p>Mereces un imán para el refri, sí — pero también recuerdos reales de tu familia relajada, feliz y presente en la playa.</p>
+      <div class="hero__cta">
+        <button type="button" class="btn" data-cal-link="estudiobrumar/secret" data-cal-config='{"layout":"month_view"}'>Va, organicemos la sesión</button>
+        <div class="hero__alt">
+          <a href="https://api.whatsapp.com/send?phone=+529982247502&text=%C2%A1Hola!%20%F0%9F%91%8B%20Me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20las%20sesiones%20de%20fotos." target="_blank" rel="noopener">o escríbenos por WhatsApp</a>
+        </div>
       </div>
     </div>
   </div>
