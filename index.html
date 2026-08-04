@@ -419,27 +419,40 @@
   .carousel-wrap{position:relative;}
   .carousel{
     display:flex;
-    gap:10px;
+    align-items:flex-end;
+    gap:14px;
     overflow-x:auto;
     scroll-snap-type:x mandatory;
-    padding-bottom:6px;
+    padding:22px 4px 18px;
     scrollbar-width:none;
   }
   .carousel::-webkit-scrollbar{display:none;}
   .carousel figure{
     flex:0 0 auto;
-    height:190px;
+    height:170px;
     scroll-snap-align:start;
     border-radius:14px;
     overflow:hidden;
     cursor:pointer;
     background:var(--cream-deep);
+    transition:transform .35s ease;
   }
-  @media (min-width:720px){.carousel figure{height:250px;}}
-  .carousel img{height:100%; width:auto; display:block; transition:transform .5s ease;}
-  .carousel figure:hover img{transform:scale(1.04);}
+  @media (min-width:720px){.carousel figure{height:220px;}}
 
-  .carousel__dots{display:flex; justify-content:center; gap:8px; margin-top:22px;}
+  /* ritmo: alterna tamaños, desfase vertical y una leve rotación para dar dinamismo */
+  .carousel figure:nth-child(3n+2){height:210px; margin-bottom:26px;}
+  .carousel figure:nth-child(3n){height:150px;}
+  @media (min-width:720px){
+    .carousel figure:nth-child(3n+2){height:270px; margin-bottom:34px;}
+    .carousel figure:nth-child(3n){height:190px;}
+  }
+  .carousel figure:nth-child(5n+1){transform:rotate(-1.6deg);}
+  .carousel figure:nth-child(5n+3){transform:rotate(1.4deg);}
+  .carousel figure:hover{transform:scale(1.03) rotate(0deg); z-index:2;}
+
+  .carousel img{height:100%; width:auto; display:block;}
+
+  .carousel__dots{display:flex; justify-content:center; gap:8px; margin-top:14px;}
   .carousel__dots button{
     width:8px; height:8px; border-radius:50%;
     border:none; background:var(--sand); padding:0; cursor:pointer;
@@ -1043,32 +1056,6 @@
       scrollTicking = true;
     }
   });
-
-  // Autoplay: avanza sola cada 3.5s y hace loop; se pausa al interactuar
-  let carAutoplay;
-  function goToIndex(i){
-    const fig = carFigures[(i + carFigures.length) % carFigures.length];
-    fig.scrollIntoView({ behavior:'smooth', inline:'start', block:'nearest' });
-  }
-  function startAutoplay(){
-    carAutoplay = setInterval(() => {
-      const current = setActiveDot();
-      goToIndex(current + 1);
-    }, 3500);
-  }
-  function pauseAutoplay(){
-    clearInterval(carAutoplay);
-  }
-  let resumeTimer;
-  function pauseThenResume(){
-    pauseAutoplay();
-    clearTimeout(resumeTimer);
-    resumeTimer = setTimeout(startAutoplay, 5000);
-  }
-  ['mouseenter','touchstart','pointerdown','wheel'].forEach(evt => {
-    carousel.addEventListener(evt, pauseThenResume, { passive:true });
-  });
-  startAutoplay();
 
   // Modal de portafolio completo
   const fullModal = document.getElementById('fullPortfolioModal');
