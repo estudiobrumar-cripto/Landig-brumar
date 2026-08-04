@@ -529,18 +529,7 @@
     text-align:center;
   }
   .cta-final h2{font-size:clamp(28px,5vw,48px); max-width:14ch; margin:0 auto;}
-  .cta-final__sub{margin-top:14px; color:var(--ink-soft); font-size:16px;}
-  .cal-embed-wrap{
-    margin:36px auto 0;
-    max-width:920px;
-    background:var(--cream);
-    border-radius:20px;
-    border:1px solid rgba(44,40,35,.08);
-    overflow:hidden;
-    box-shadow:0 20px 50px -20px rgba(44,40,35,.18);
-  }
-  #cal-inline{width:100%; height:680px;}
-  @media (max-width:640px){#cal-inline{height:820px;}}
+  .cta-final .btn{margin-top:30px;}
 
   /* ===================== FOOTER ===================== */
   footer{
@@ -565,7 +554,7 @@
     Brumar
   </a>
   <!-- CTA único: sin menú de navegación con enlaces adicionales, por doctrina CRO -->
-  <a href="#contacto" class="btn">Agendar cafecito ☕️</a>
+  <button type="button" class="btn" data-cal-link="estudiobrumar/secret" data-cal-config='{"layout":"month_view"}'>Agendar cafecito ☕️</button>
 </nav>
 
 <!-- ============ HERO ============ -->
@@ -585,7 +574,7 @@
     <h1>Vuelve a casa con algo más que arena en los zapatos.</h1>
     <p>Mereces un imán para el refri, sí — pero también recuerdos reales de tu familia relajada, feliz y presente en la playa.</p>
     <div class="hero__cta">
-      <a href="#contacto" class="btn">Va, organicemos la sesión</a>
+      <button type="button" class="btn" data-cal-link="estudiobrumar/secret" data-cal-config='{"layout":"month_view"}'>Va, organicemos la sesión</button>
       <span class="microcopy">Respondo por WhatsApp o Instagram en menos de 24h.</span>
       <div class="hero__alt">
         <a href="https://api.whatsapp.com/send?phone=+529982247502&text=%C2%A1Hola!%20%F0%9F%91%8B%20Me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20las%20sesiones%20de%20fotos." target="_blank" rel="noopener">o escríbenos por WhatsApp</a>
@@ -832,12 +821,8 @@
   <div class="container reveal">
     <span class="eyebrow">¿Listos para su sesión?</span>
     <h2>Organicemos los recuerdos de tus próximas vacaciones.</h2>
-    <p class="cta-final__sub">Elige el día y la hora que mejor te acomode, directo aquí abajo.</p>
-
-    <div class="cal-embed-wrap">
-      <div id="cal-inline"></div>
-    </div>
-
+    <button type="button" class="btn" data-cal-link="estudiobrumar/secret" data-cal-config='{"layout":"month_view"}'>Va, organicemos la sesión</button>
+    <span class="microcopy">Sin formularios ni compromiso. Respondo en menos de 24h.</span>
     <div class="cta-final__alt">
       <a href="https://api.whatsapp.com/send?phone=+529982247502&text=%C2%A1Hola!%20%F0%9F%91%8B%20Me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20las%20sesiones%20de%20fotos." target="_blank" rel="noopener">o escríbenos por WhatsApp</a>
     </div>
@@ -863,7 +848,7 @@
   <img id="lightboxImg" src="" alt="">
 </div>
 
-<!-- CAL.COM EMBED: el calendario se muestra embebido directo en la sección #contacto, sin salir de la página -->
+<!-- CAL.COM EMBED: el calendario está oculto hasta que se hace clic en un botón "Agendar" — entonces aparece como ventana emergente sobre la misma página, sin recargar ni salir del sitio -->
 <script type="text/javascript">
   (function (C, A, L) {
     let p = function (a, ar) { a.q.push(ar); };
@@ -891,12 +876,6 @@
   })(window, "https://app.cal.com/embed/embed.js", "init");
 
   Cal("init", { origin: "https://cal.com" });
-
-  Cal("inline", {
-    elementOrSelector: "#cal-inline",
-    calLink: "estudiobrumar/secret",
-    config: { "layout": "month_view" }
-  });
 
   Cal("ui", {
     "cssVarsPerTheme": {
