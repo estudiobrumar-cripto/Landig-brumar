@@ -176,6 +176,10 @@
   }
   .hero__cta{margin-top:32px;}
   .hero__cta .microcopy{color:rgba(245,240,232,.75);}
+  .hero__alt, .cta-final__alt{margin-top:14px;}
+  .hero__alt a{font-size:14px; font-weight:600; color:var(--cream); text-decoration:underline; text-underline-offset:3px; opacity:.9;}
+  .hero__alt a:hover{opacity:1;}
+  .cta-final__alt a{font-size:14px; font-weight:600; color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
 
   .scroll-hint{
     position:absolute; bottom:22px; left:50%; transform:translateX(-50%);
@@ -550,7 +554,7 @@
     Brumar
   </a>
   <!-- CTA único: sin menú de navegación con enlaces adicionales, por doctrina CRO -->
-  <a href="#contacto" class="btn">Escríbeme por WhatsApp</a>
+  <a href="https://cal.com/estudiobrumar/secret" class="btn" target="_blank" rel="noopener">Agendar cafecito ☕️</a>
 </nav>
 
 <!-- ============ HERO ============ -->
@@ -570,8 +574,11 @@
     <h1>Vuelve a casa con algo más que arena en los zapatos.</h1>
     <p>Mereces un imán para el refri, sí — pero también recuerdos reales de tu familia relajada, feliz y presente en la playa.</p>
     <div class="hero__cta">
-      <a href="#contacto" class="btn">Va, organicemos la sesión</a>
+      <a href="https://cal.com/estudiobrumar/secret" class="btn" target="_blank" rel="noopener">Va, organicemos la sesión</a>
       <span class="microcopy">Respondo por WhatsApp o Instagram en menos de 24h.</span>
+      <div class="hero__alt">
+        <a href="https://api.whatsapp.com/send?phone=+529982247502&text=%C2%A1Hola!%20%F0%9F%91%8B%20Me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20las%20sesiones%20de%20fotos." target="_blank" rel="noopener">o escríbenos por WhatsApp</a>
+      </div>
     </div>
   </div>
   <div class="scroll-hint" aria-hidden="true"><span></span>Desliza</div>
@@ -814,9 +821,11 @@
   <div class="container reveal">
     <span class="eyebrow">¿Listos para su sesión?</span>
     <h2>Organicemos los recuerdos de tus próximas vacaciones.</h2>
-    <!-- WHATSAPP: reemplaza 5219981234567 por tu número real con lada de país (52) + código de área -->
-    <a href="https://wa.me/5219981234567?text=Hola%20Adriel%2C%20quiero%20organizar%20una%20sesi%C3%B3n%20de%20fotos%20familiar%20en%20Canc%C3%BAn" class="btn" target="_blank" rel="noopener">Va, organicemos la sesión</a>
+    <a href="https://cal.com/estudiobrumar/secret" class="btn" target="_blank" rel="noopener">Va, organicemos la sesión</a>
     <span class="microcopy">Sin formularios ni compromiso. Respondo en menos de 24h.</span>
+    <div class="cta-final__alt">
+      <a href="https://api.whatsapp.com/send?phone=+529982247502&text=%C2%A1Hola!%20%F0%9F%91%8B%20Me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20las%20sesiones%20de%20fotos." target="_blank" rel="noopener">o escríbenos por WhatsApp</a>
+    </div>
   </div>
 </section>
 
@@ -827,7 +836,7 @@
     <div class="footer__social">
       <!-- REDES: reemplaza los enlaces por tus perfiles reales -->
       <a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://wa.me/5219981234567" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://api.whatsapp.com/send?phone=+529982247502&text=%C2%A1Hola!%20%F0%9F%91%8B%20Me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20las%20sesiones%20de%20fotos." target="_blank" rel="noopener">WhatsApp</a>
     </div>
     <p class="fine">© 2026 Brumar — Fotografía familiar en Cancún. Tus datos solo se usan para responder tu mensaje, nunca se comparten con terceros.</p>
   </div>
@@ -914,10 +923,9 @@
     qList.innerHTML = items.map(it => `<li>${it}</li>`).join('')
       + `<li class="is-dynamic">${n} fotos editadas incluidas</li>`;
 
-    // REEMPLAZA 5219981234567 por el número real (mismo que en el resto del sitio)
     const extrasMsg = extras.length ? ` + ${extras.map(e => e.name).join(' + ')}` : '';
     const msg = encodeURIComponent(`Hola Adriel, quiero reservar el ${tier.name} de ${n} fotos${extrasMsg} (total aprox. $${total} MXN).`);
-    qWhatsapp.href = `https://wa.me/5219981234567?text=${msg}`;
+    qWhatsapp.href = `https://wa.me/529982247502?text=${msg}`;
   }
 
   qSlider.addEventListener('input', updateQuoter);
