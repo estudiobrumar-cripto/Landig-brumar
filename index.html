@@ -3,6 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  // Evita que el navegador restaure la posición de scroll de una visita anterior
+  if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+  window.addEventListener('load', () => { window.scrollTo(0, 0); });
+</script>
 <title>Brumar | Fotografía familiar en las playas de Cancún</title>
 <meta name="description" content="Sesiones de fotografía familiar en las playas de Cancún. Vuelve a casa con recuerdos reales de tus vacaciones, no solo con arena en los zapatos.">
 
