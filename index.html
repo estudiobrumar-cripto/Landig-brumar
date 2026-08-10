@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://res.cloudinary.com/dcio95v6m/image/upload/f_auto,q_auto/v1781577112/Dise%C3%B1o_sin_t%C3%ADtulo_kirfzv.png">
 <meta property="og:locale" content="es_MX">
 
-<link rel="icon" href="https://res.cloudinary.com/dcio95v6m/image/upload/w_64,h_64,c_fill,q_auto,f_auto/v1781577115/d54ecc66-3d17-4788-a42c-ffff938f80d3_gj0bym.jpg" type="image/jpeg">
+<link rel="icon" href="https://res.cloudinary.com/dcio95v6m/image/upload/w_64,h_64,c_fill,q_auto,f_auto/v1781577115/d54ecc66-3d17-4788-a42c-ffff938f80d3_gj0bym.jpg?v=2" type="image/jpeg">
 
 <!-- Schema.org -->
 <script type="application/ld+json">
@@ -444,7 +444,8 @@
   .carousel img{height:100%; width:auto; display:block; transition:transform .5s ease;}
   .carousel figure:hover img{transform:scale(1.04);}
 
-  .carousel__dots{display:flex; justify-content:center; gap:8px; margin-top:22px;}
+  .carousel__controls{display:flex; align-items:center; justify-content:center; gap:16px; margin-top:22px;}
+  .carousel__dots{display:flex; justify-content:center; gap:8px;}
   .carousel__dots button{
     width:8px; height:8px; border-radius:50%;
     border:none; background:var(--sand); padding:0; cursor:pointer;
@@ -452,7 +453,15 @@
   }
   .carousel__dots button.is-active{background:var(--terracotta); transform:scale(1.3);}
 
-  .carousel__nav{display:none;}
+  .carousel__nav{display:flex; gap:10px;}
+  .carousel__nav button{
+    width:34px; height:34px; border-radius:50%;
+    border:1.5px solid var(--ink); background:transparent;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; font-size:14px; color:var(--ink);
+    transition:background .2s ease, color .2s ease;
+  }
+  .carousel__nav button:hover{background:var(--ink); color:var(--cream);}
 
   .portafolio__footer{margin-top:30px; text-align:center;}
 
@@ -804,7 +813,15 @@
         <figure><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,h_800/v1781577122/IMG_3932-Editar_evotobak_irpql9.jpg" alt="Sesión familiar en la playa - foto 11"></figure>
         <figure><img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/q_auto,f_auto,h_800/v1782415059/IMG_2332-Editar_dwhasd.jpg" alt="Sesión familiar en la playa - foto 12"></figure>
       </div>
-      <div class="carousel__dots" id="carDots"></div>
+      <div class="carousel__controls">
+        <div class="carousel__nav">
+          <button type="button" id="carPrev" aria-label="Anterior">&larr;</button>
+        </div>
+        <div class="carousel__dots" id="carDots"></div>
+        <div class="carousel__nav">
+          <button type="button" id="carNext" aria-label="Siguiente">&rarr;</button>
+        </div>
+      </div>
     </div>
     <div class="portafolio__footer">
       <button type="button" class="btn btn-ghost" id="openFullPortfolio1">Ver portafolio completo</button>
@@ -1073,27 +1090,31 @@
     if (img) openLightbox(img);
   });
 
-  // Puntos de paginación
-  carFigures.forEach((fig, i) => {
+  // Puntos agrupados (menos puntos: uno cada 3 fotos, no uno por foto)
+  const GROUP_SIZE = 3;
+  const groupStarts = [];
+  for (let i = 0; i < carFigures.length; i += GROUP_SIZE) groupStarts.push(i);
+
+  groupStarts.forEach((startIndex, gi) => {
     const dot = document.createElement('button');
     dot.type = 'button';
-    dot.setAttribute('aria-label', `Ir a la foto ${i + 1}`);
-    if (i === 0) dot.classList.add('is-active');
+    dot.setAttribute('aria-label', `Ir al grupo de fotos ${gi + 1}`);
+    if (gi === 0) dot.classList.add('is-active');
     dot.addEventListener('click', () => {
-      carousel.scrollTo({ left: fig.offsetLeft, behavior:'smooth' });
+      carousel.scrollTo({ left: carFigures[startIndex].offsetLeft, behavior:'smooth' });
     });
     carDots.appendChild(dot);
   });
   const dotEls = Array.from(carDots.children);
 
   function setActiveDot(){
-    const center = carousel.scrollLeft + carousel.clientWidth / 3;
     let closest = 0, min = Infinity;
     carFigures.forEach((fig, i) => {
       const dist = Math.abs(fig.offsetLeft - carousel.scrollLeft);
       if (dist < min) { min = dist; closest = i; }
     });
-    dotEls.forEach((d, i) => d.classList.toggle('is-active', i === closest));
+    const activeGroup = Math.floor(closest / GROUP_SIZE);
+    dotEls.forEach((d, i) => d.classList.toggle('is-active', i === activeGroup));
     return closest;
   }
   let scrollTicking = false;
@@ -1104,36 +1125,13 @@
     }
   });
 
-  // Autoplay: avanza sola cada 3.5s y hace loop; se pausa al interactuar
-  let carAutoplay;
-  function goToIndex(i){
-    const fig = carFigures[(i + carFigures.length) % carFigures.length];
-    carousel.scrollTo({ left: fig.offsetLeft, behavior:'smooth' });
-  }
-  function startAutoplay(){
-    carAutoplay = setInterval(() => {
-      const current = setActiveDot();
-      goToIndex(current + 1);
-    }, 3500);
-  }
-  function pauseAutoplay(){
-    clearInterval(carAutoplay);
-  }
-  let resumeTimer;
-  function pauseThenResume(){
-    pauseAutoplay();
-    clearTimeout(resumeTimer);
-    resumeTimer = setTimeout(startAutoplay, 5000);
-  }
-  ['mouseenter','touchstart','pointerdown','wheel'].forEach(evt => {
-    carousel.addEventListener(evt, pauseThenResume, { passive:true });
+  // Flechas: avanzan/retroceden un ancho de pantalla del carrusel
+  document.getElementById('carPrev').addEventListener('click', () => {
+    carousel.scrollBy({ left: -carousel.clientWidth * 0.85, behavior:'smooth' });
   });
-  const carVisibilityObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) startAutoplay(); else pauseAutoplay();
-    });
-  }, { threshold:0.4 });
-  carVisibilityObserver.observe(carousel);
+  document.getElementById('carNext').addEventListener('click', () => {
+    carousel.scrollBy({ left: carousel.clientWidth * 0.85, behavior:'smooth' });
+  });
 
   // Modal de portafolio completo
   const fullModal = document.getElementById('fullPortfolioModal');
