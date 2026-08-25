@@ -502,18 +502,27 @@
 
   /* Lightbox */
   .lightbox{
-    position:fixed;inset:0;z-index:200;
+    position:fixed;inset:0;z-index:300;
     background:rgba(20,18,16,.92);
     display:none;
-    align-items:center;justify-content:center;
-    padding:24px;
+    align-items:flex-start;justify-content:center;
+    padding:80px 24px 24px;
+    overflow-y:auto;
   }
   .lightbox.is-open{display:flex;}
-  .lightbox img{max-width:100%; max-height:88vh; border-radius:8px;}
+  .lightbox img{max-width:100%; max-height:78vh; border-radius:8px;}
   .lightbox__close{
-    position:absolute; top:20px; right:24px;
-    background:none;border:none;color:var(--cream);font-size:32px;cursor:pointer;line-height:1;
+    position:fixed; top:20px; right:24px;
+    width:42px; height:42px; border-radius:50%;
+    background:rgba(245,240,232,.12);
+    border:1.5px solid rgba(245,240,232,.6);
+    color:var(--cream);
+    font-size:22px;cursor:pointer;line-height:1;
+    display:flex; align-items:center; justify-content:center;
+    transition:background .2s ease, transform .2s ease;
+    z-index:2;
   }
+  .lightbox__close:hover{background:rgba(245,240,232,.9); color:var(--ink); transform:rotate(90deg);}
 
   /* Modal portafolio completo: panel que sube desde abajo (bottom sheet), tampoco recorta las fotos */
   .full-modal{
@@ -590,6 +599,8 @@
     transition:transform .3s ease, box-shadow .3s ease;
   }
   .masonry img:hover, .fd-grid img:hover{transform:scale(1.02); box-shadow:0 12px 24px -12px rgba(44,40,35,.4);}
+  .fd-grid img:nth-child(3n+2){margin-top:22px;}
+  .fd-grid img:nth-child(5n){margin-top:-10px;}
 
   /* ===================== SOBRE MÍ ===================== */
   .sobre{background:var(--sand); color:var(--ink);}
@@ -804,16 +815,16 @@
       <p>Un vuelo, un vestido, una foto que se ve como sacada de un sueño.</p>
     </div>
     <div class="fd-modal__body">
-    <div class="fd-grid">
-      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_500,q_auto,f_auto/v1781577120/IMG_8457-Editar_zz8uat.jpg" alt="Ejemplo de sesión flying dress 1">
-      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_500,q_auto,f_auto/v1781577126/ChatGPT_Image_15_jun_2026_09_21_17_p.m._pmaimk.png" alt="Ejemplo de sesión flying dress 2">
-      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_500,q_auto,f_auto/v1781577116/IMG_8427-Mejorado-NR-Editar_zlpwh0.jpg" alt="Ejemplo de sesión flying dress 3">
-      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_500,q_auto,f_auto/v1781577125/ChatGPT_Image_15_jun_2026_09_09_35_p.m._uifkmq.png" alt="Ejemplo de sesión flying dress 4">
-      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_500,q_auto,f_auto/v1781577117/IMG_8450-Editar_zupcgk.jpg" alt="Ejemplo de sesión flying dress 5">
-      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_500,q_auto,f_auto/v1781577125/ChatGPT_Image_15_jun_2026_09_08_40_p.m._ahzvlq.png" alt="Ejemplo de sesión flying dress 6">
+    <div class="fd-grid" id="fdGrid">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_500,q_auto,f_auto/v1781577117/IMG_8450-Editar_zupcgk.jpg" alt="Ejemplo de sesión flying dress 1">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_500,q_auto,f_auto/v1781577116/IMG_8427-Mejorado-NR-Editar_zlpwh0.jpg" alt="Ejemplo de sesión flying dress 2">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_500,q_auto,f_auto/v1781577125/ChatGPT_Image_15_jun_2026_09_08_40_p.m._ahzvlq.png" alt="Ejemplo de sesión flying dress 3">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_500,q_auto,f_auto/v1781577120/IMG_8457-Editar_zz8uat.jpg" alt="Ejemplo de sesión flying dress 4">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_500,q_auto,f_auto/v1781577116/IMG_8437-Mejorado-NR-Editar_ua6k07.jpg" alt="Ejemplo de sesión flying dress 5">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_500,q_auto,f_auto/v1781577125/ChatGPT_Image_15_jun_2026_09_09_35_p.m._uifkmq.png" alt="Ejemplo de sesión flying dress 6">
       <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_500,q_auto,f_auto/v1781577116/IMG_8419-Editar_nmzhdo.jpg" alt="Ejemplo de sesión flying dress 7">
-      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_500,q_auto,f_auto/v1781577123/ChatGPT_Image_15_jun_2026_09_06_42_p.m._j6bwwk.png" alt="Ejemplo de sesión flying dress 8">
-      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_500,q_auto,f_auto/v1781577116/IMG_8437-Mejorado-NR-Editar_ua6k07.jpg" alt="Ejemplo de sesión flying dress 9">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_500,q_auto,f_auto/v1781577126/ChatGPT_Image_15_jun_2026_09_21_17_p.m._pmaimk.png" alt="Ejemplo de sesión flying dress 8">
+      <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_500,q_auto,f_auto/v1781577123/ChatGPT_Image_15_jun_2026_09_06_42_p.m._j6bwwk.png" alt="Ejemplo de sesión flying dress 9">
       <img loading="lazy" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_500,q_auto,f_auto/v1781577125/ChatGPT_Image_15_jun_2026_09_22_54_p.m._pvline.png" alt="Ejemplo de sesión flying dress 10">
     </div>
     </div>
@@ -1101,6 +1112,10 @@
   fdCloseBtn.addEventListener('click', closeFdModal);
   fdModal.addEventListener('click', (e) => { if (e.target === fdModal) closeFdModal(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeFdModal(); });
+  document.getElementById('fdGrid').addEventListener('click', (e) => {
+    const img = e.target.closest('img');
+    if (img) openLightbox(img);
+  });
 
   // Lightbox (funciona para el carrusel y el portafolio completo)
   const lightbox = document.getElementById('lightbox');
@@ -1168,6 +1183,37 @@
   document.getElementById('carNext').addEventListener('click', () => {
     carousel.scrollBy({ left: carousel.clientWidth * 0.85, behavior:'smooth' });
   });
+
+  // Movimiento automático: avanza sola cada 3.5s (solo mueve el carrusel, nunca la página),
+  // se pausa si el usuario interactúa y solo corre mientras el carrusel está a la vista.
+  let carAutoplay = null;
+  function startAutoplay(){
+    if (carAutoplay) return; // ya está corriendo: nunca crear un segundo intervalo
+    carAutoplay = setInterval(() => {
+      const current = setActiveDot();
+      const next = carFigures[(current + 1) % carFigures.length];
+      carousel.scrollTo({ left: next.offsetLeft, behavior:'smooth' });
+    }, 2000);
+  }
+  function pauseAutoplay(){
+    clearInterval(carAutoplay);
+    carAutoplay = null;
+  }
+  let resumeTimer;
+  function pauseThenResume(){
+    pauseAutoplay();
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(startAutoplay, 5000);
+  }
+  ['mouseenter','touchstart','pointerdown','wheel'].forEach(evt => {
+    carousel.addEventListener(evt, pauseThenResume, { passive:true });
+  });
+  const carVisibilityObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) startAutoplay(); else pauseAutoplay();
+    });
+  }, { threshold:0.5 });
+  carVisibilityObserver.observe(carousel);
 
   // Modal de portafolio completo
   const fullModal = document.getElementById('fullPortfolioModal');
