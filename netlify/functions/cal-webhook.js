@@ -16,6 +16,12 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     X-Frame-Options = "SAMEORIGIN"
 
+User-agent: *
+Allow: /
+Disallow: /.netlify/
+
+Sitemap: https://brumar.org/sitemap.xml
+
 // netlify/functions/cal-webhook.js
 // Cal.com (BOOKING_CREATED) -> Netlify Function -> Meta (CAPI + audiencia)
 
