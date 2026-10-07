@@ -1,0 +1,9 @@
+{
+  "name": "brumar",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing de Estudio Brumar + webhook de Cal.com a Meta CAPI",
+  "engines": {
+    "node": ">=18"
+  }
+}
