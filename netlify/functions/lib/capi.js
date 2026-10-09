@@ -3,6 +3,8 @@
 // Vive en /lib para que Netlify NO lo trate como una función pública.
 
 const crypto = require("crypto");
+// En Netlify la variable se llama "Meta_Access_Token": se aceptan ambos nombres.
+process.env.META_ACCESS_TOKEN = process.env.META_ACCESS_TOKEN || process.env.Meta_Access_Token;
 
 // v21.0 caduca en 2026: se usa v23.0 por defecto (se puede cambiar con la variable META_GRAPH_VERSION).
 const GRAPH = `https://graph.facebook.com/${process.env.META_GRAPH_VERSION || "v23.0"}`;
