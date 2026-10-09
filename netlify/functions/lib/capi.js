@@ -137,7 +137,7 @@ async function addToAudience({ email, phone, name }) {
     method: "POST",
     body: {
       payload: {
-        schema: ["EMAIL_SHA256", "PHONE_SHA256", "FN_SHA256", "LN_SHA256"],
+        schema: ["EMAIL", "PHONE", "FN", "LN"], // multi-key: los valores ya van en SHA256
         data: [row],
       },
     },
