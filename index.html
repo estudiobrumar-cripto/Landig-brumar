@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-MX">
+<html lang="es-MX" data-page="home" data-root="">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,35 +8,60 @@
 <link rel="dns-prefetch" href="https://res.cloudinary.com">
 <link rel="preconnect" href="https://app.cal.com">
 <link rel="dns-prefetch" href="https://app.cal.com">
-<link rel="preconnect" href="https://cal.com">
-<link rel="dns-prefetch" href="https://cal.com">
-<script>
-  // Evita que el navegador restaure la posición de scroll de una visita anterior
-  if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
-  window.addEventListener('load', () => { window.scrollTo(0, 0); });
-</script>
-<title>Brumar | Fotografía familiar en las playas de Cancún</title>
-<meta name="description" content="Sesiones de fotografía familiar en las playas de Cancún. Vuelve a casa con recuerdos reales de tus vacaciones, no solo con arena en los zapatos.">
+<link rel="preconnect" href="https://connect.facebook.net">
 
-<!-- Open Graph -->
-<meta property="og:type" content="business.business">
+<title>Brumar | Fotografía familiar en las playas de Cancún</title>
+<meta name="description" content="Sesiones de fotografía familiar en las playas de Cancún desde $900 MXN. Vuelve a casa con recuerdos reales de tus vacaciones, no solo con arena en los zapatos.">
+<link rel="canonical" href="https://brumar.org/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<!-- Open Graph (vista previa al compartir en WhatsApp, Facebook, Instagram) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Brumar">
+<meta property="og:url" content="https://brumar.org/">
 <meta property="og:title" content="Brumar | Fotografía familiar en las playas de Cancún">
 <meta property="og:description" content="Sesiones de fotografía familiar en las playas de Cancún. Vuelve a casa con recuerdos reales de tus vacaciones.">
 <meta property="og:image" content="https://res.cloudinary.com/dcio95v6m/image/upload/f_auto,q_auto/v1781577112/Dise%C3%B1o_sin_t%C3%ADtulo_kirfzv.png">
 <meta property="og:locale" content="es_MX">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Brumar | Fotografía familiar en las playas de Cancún">
+<meta name="twitter:description" content="Sesiones de fotografía familiar en las playas de Cancún. Vuelve a casa con recuerdos reales de tus vacaciones.">
+<meta name="twitter:image" content="https://res.cloudinary.com/dcio95v6m/image/upload/f_auto,q_auto/v1781577112/Dise%C3%B1o_sin_t%C3%ADtulo_kirfzv.png">
 
 <link rel="icon" href="https://res.cloudinary.com/dcio95v6m/image/upload/w_64,h_64,c_fill,q_auto,f_auto/v1781577115/d54ecc66-3d17-4788-a42c-ffff938f80d3_gj0bym.jpg?v=2" type="image/jpeg">
 
-<!-- Schema.org -->
+<!-- Schema.org (SEO + GEO: datos que Google y las IAs leen y citan) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
+  "@id": "https://brumar.org/#negocio",
   "name": "Brumar",
+  "url": "https://brumar.org/",
   "image": "https://res.cloudinary.com/dcio95v6m/image/upload/v1781577112/Copia_de_IMG_3897-Editar_roaivf.jpg",
-  "description": "Fotografía familiar de vacaciones en las playas de Cancún.",
-  "areaServed": "Cancún, Quintana Roo, México",
-  "founder": { "@type": "Person", "name": "Adriel Poot" }
+  "logo": "https://res.cloudinary.com/dcio95v6m/image/upload/v1781577112/ISOTIPO-09_pgk5wl.png",
+  "description": "Fotografía familiar de vacaciones en las playas de Cancún. Sesiones desde 10 hasta 40 fotos editadas, con llamada de planificación y entrega en máximo 5 días.",
+  "telephone": "+52 998 224 7502",
+  "email": "estudiobrumar@gmail.com",
+  "priceRange": "$900 - $2,400 MXN",
+  "currenciesAccepted": "MXN",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Cancún",
+    "addressRegion": "Quintana Roo",
+    "addressCountry": "MX"
+  },
+  "areaServed": { "@type": "City", "name": "Cancún" },
+  "founder": { "@type": "Person", "name": "Adriel Poot", "jobTitle": "Fotógrafo", "alumniOf": "Escuela de Artes Visuales" },
+  "sameAs": ["https://www.instagram.com/estudiobrumar/"],
+  "makesOffer": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "MXN",
+    "lowPrice": "900",
+    "highPrice": "2400",
+    "offerCount": "4",
+    "itemOffered": { "@type": "Service", "name": "Sesión de fotos familiar en la playa" }
+  }
 }
 </script>
 
@@ -44,663 +69,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<style>
-  /* ===================== TOKENS ===================== */
-  :root{
-    --cream:#F5F0E8;
-    --cream-deep:#ECE3D3;
-    --sand:#B2A592;
-    --mist:#798689;
-    --terracotta:#A17259;
-    --terracotta-deep:#8A5F49;
-    --ink:#2C2823;
-    --ink-soft:#5B554B;
-    --white:#FFFFFF;
+<!-- Estilos de TODO el sitio -->
+<link rel="stylesheet" href="assets/css/global.css">
 
-    --font-display:'Fraunces', serif;
-    --font-body:'Work Sans', sans-serif;
-
-    --space-s: 16px;
-    --space-m: 32px;
-    --space-l: 48px;
-    --space-xl: 80px;
-  }
-
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    font-family:var(--font-body);
-    background:var(--cream);
-    color:var(--ink);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-  img{max-width:100%;display:block;}
-  a{color:inherit;text-decoration:none;}
-  h1,h2,h3{font-family:var(--font-display);font-weight:500;line-height:1.12;color:var(--ink);}
-  .eyebrow{
-    font-family:var(--font-body);
-    text-transform:uppercase;
-    letter-spacing:.14em;
-    font-size:12px;
-    font-weight:600;
-    color:var(--terracotta-deep);
-    display:block;
-    margin-bottom:14px;
-  }
-  .container{max-width:1180px;margin:0 auto;padding:0 var(--space-s);}
-  section{padding:var(--space-xl) 0;}
-  @media (max-width:640px){
-    section{padding:56px 0;}
-    :root{--space-xl:56px;}
-  }
-
-  /* focus visibility */
-  a:focus-visible, button:focus-visible{outline:2px solid var(--terracotta);outline-offset:3px;}
-  @media (prefers-reduced-motion: reduce){
-    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
-  }
-
-  /* ===================== BUTTONS ===================== */
-  .btn{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    background:var(--terracotta);
-    color:var(--cream);
-    font-family:var(--font-body);
-    font-weight:600;
-    font-size:15px;
-    padding:16px 30px;
-    border-radius:100px;
-    border:none;
-    cursor:pointer;
-    box-shadow:0 8px 20px -8px rgba(161,114,89,.55);
-    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
-    white-space:nowrap;
-  }
-  .btn:hover{background:var(--terracotta-deep); transform:translateY(-2px); box-shadow:0 12px 24px -8px rgba(161,114,89,.6);}
-  .btn-ghost{
-    background:transparent;
-    border:1.5px solid var(--ink);
-    color:var(--ink);
-    box-shadow:none;
-  }
-  .btn-ghost:hover{background:var(--ink); color:var(--cream);}
-  .microcopy{
-    display:block;
-    margin-top:12px;
-    font-size:13px;
-    color:var(--ink-soft);
-  }
-
-  /* ===================== NAV ===================== */
-  .nav{
-    position:fixed; top:0; left:0; right:0; z-index:100;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:18px var(--space-s);
-    background:rgba(245,240,232,.72);
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-    border-bottom:1px solid rgba(44,40,35,.06);
-  }
-  .nav.is-solid{background:rgba(245,240,232,.94);}
-  .nav__logo{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-size:20px;}
-  .nav__logo img{height:34px;width:auto;}
-  .nav .btn{padding:12px 22px;font-size:14px;}
-
-  /* ===================== HERO ===================== */
-  .hero{
-    position:relative;
-    display:grid;
-    grid-template-columns:1fr;
-    background:var(--cream);
-    padding:120px var(--space-s) 48px;
-    gap:36px;
-  }
-  @media (min-width:900px){
-    .hero{
-      grid-template-columns:0.95fr 1.05fr;
-      align-items:center;
-      min-height:100vh;
-      padding:120px 6vw 60px;
-      gap:60px;
-    }
-  }
-  .hero__text{
-    order:2;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-  }
-  @media (min-width:900px){
-    .hero__text{order:1; max-width:520px;}
-  }
-  .hero__media{
-    order:1;
-    position:relative;
-    overflow:hidden;
-    border-radius:26px;
-    aspect-ratio:4/5;
-    box-shadow:0 30px 60px -22px rgba(44,40,35,.32);
-  }
-  @media (min-width:900px){
-    .hero__media{order:2; aspect-ratio:auto; height:min(78vh, 720px);}
-  }
-  .hero__media img{width:100%;height:100%;object-fit:cover;object-position:center 30%;}
-
-  .hero__text .eyebrow{color:var(--terracotta-deep);}
-  .hero h1{
-    font-size:clamp(30px, 4.4vw, 54px);
-    max-width:14ch;
-    color:var(--ink);
-  }
-  .hero p{
-    margin-top:20px;
-    font-size:clamp(16px, 1.6vw, 18px);
-    max-width:46ch;
-    color:var(--ink-soft);
-    font-weight:300;
-  }
-  .hero__cta{margin-top:32px;}
-  .hero__cta .microcopy{color:var(--ink-soft);}
-  .hero__alt, .cta-final__alt{margin-top:14px;}
-  .hero__alt a{font-size:14px; font-weight:600; color:var(--ink); text-decoration:underline; text-underline-offset:3px; opacity:.8;}
-  .hero__alt a:hover{opacity:1;}
-  .cta-final__alt a{font-size:14px; font-weight:600; color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
-
-  .scroll-hint{display:none;}
-  .scroll-hint span{width:1px;height:26px;background:currentColor;animation:scrollDown 1.8s ease-in-out infinite;}
-  @keyframes scrollDown{0%{opacity:0; transform:scaleY(.3); transform-origin:top;}50%{opacity:1;transform:scaleY(1);transform-origin:top;}100%{opacity:0;transform:scaleY(.3);transform-origin:bottom;}}
-
-  /* ===================== MIST DIVIDER (signature element) ===================== */
-  .mist-divider{
-    position:relative;
-    height:120px;
-    margin-top:-1px;
-    background:
-      radial-gradient(60% 100% at 20% 100%, rgba(121,134,137,.55), transparent 70%),
-      radial-gradient(50% 100% at 60% 100%, rgba(245,240,232,.9), transparent 75%),
-      radial-gradient(70% 100% at 90% 100%, rgba(161,114,89,.4), transparent 70%);
-    filter:blur(18px);
-  }
-  @media (max-width:640px){.mist-divider{height:70px;}}
-
-  /* ===================== REVEAL ===================== */
-  .reveal{opacity:0; transform:translateY(22px); transition:opacity .8s ease, transform .8s ease;}
-  .reveal.is-visible{opacity:1; transform:translateY(0);}
-
-  /* ===================== PROBLEMA ===================== */
-  .problema{background:linear-gradient(160deg, rgba(178,165,146,.22), transparent 55%), var(--cream);}
-  .problema__grid{display:grid; gap:var(--space-l); align-items:center;}
-  .problema h2{font-size:clamp(26px,4vw,40px); max-width:16ch;}
-  .problema p{margin-top:18px; color:var(--ink-soft); font-size:16px; max-width:52ch;}
-  @media (min-width:900px){
-    .problema__grid{grid-template-columns:1fr 1fr; gap:var(--space-xl);}
-  }
-
-  /* ===================== PROCESO ===================== */
-  .proceso{background:var(--cream-deep);}
-  .proceso__head{max-width:640px; margin-bottom:var(--space-l);}
-  .proceso__head h2{font-size:clamp(26px,4vw,40px);}
-  .proceso__head p{margin-top:14px; color:var(--ink-soft);}
-  .proceso__grid{display:grid; gap:24px; grid-template-columns:1fr;}
-  @media (min-width:820px){.proceso__grid{grid-template-columns:repeat(3,1fr);}}
-  .step{
-    background:var(--cream);
-    border-radius:18px;
-    padding:32px 26px;
-    border:1px solid rgba(44,40,35,.07);
-    border-top:3px solid var(--terracotta);
-  }
-  .step:nth-child(2){border-top-color:var(--mist);}
-  .step__num{
-    font-family:var(--font-display);
-    font-size:15px;
-    color:var(--terracotta);
-    border:1px solid var(--terracotta);
-    width:34px;height:34px;
-    border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    margin-bottom:20px;
-  }
-  .step:nth-child(2) .step__num{color:var(--mist); border-color:var(--mist);}
-  .step h3{font-size:20px; margin-bottom:10px;}
-  .step p{color:var(--ink-soft); font-size:15px;}
-
-  /* ===================== COTIZADOR ===================== */
-  .cotizador{background:var(--cream-deep);}
-  .cotizador__head{max-width:640px; margin-bottom:var(--space-l);}
-  .cotizador__head h2{font-size:clamp(26px,4vw,40px);}
-  .cotizador__head p{margin-top:14px; color:var(--ink-soft);}
-  .quoter{
-    background:var(--cream);
-    border-radius:24px;
-    border:1px solid rgba(44,40,35,.08);
-    border-top:4px solid var(--terracotta);
-    padding:36px;
-    display:grid;
-    gap:32px;
-  }
-  @media (min-width:900px){.quoter{grid-template-columns:1fr 1fr; padding:44px;}}
-
-  .quoter__left{display:flex; flex-direction:column; justify-content:center;}
-  .quoter__count{display:flex; align-items:baseline; gap:10px; margin-bottom:6px;}
-  .quoter__count-num{font-family:var(--font-display); font-size:56px; color:var(--terracotta-deep);}
-  .quoter__count-label{font-size:15px; color:var(--ink-soft);}
-  .quoter__tier{
-    display:inline-block;
-    font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
-    color:var(--terracotta-deep);
-    background:rgba(161,114,89,.1);
-    padding:5px 12px;
-    border-radius:100px;
-    margin-bottom:22px;
-    width:fit-content;
-    transition:color .2s ease, background .2s ease;
-  }
-  .quoter__tier.is-mist{color:#4f5f62; background:rgba(121,134,137,.14);}
-
-  .slider{
-    -webkit-appearance:none;
-    appearance:none;
-    width:100%;
-    height:6px;
-    border-radius:100px;
-    background:var(--sand);
-    outline:none;
-    margin:14px 0 6px;
-  }
-  .slider::-webkit-slider-thumb{
-    -webkit-appearance:none;
-    appearance:none;
-    width:26px;height:26px;
-    border-radius:50%;
-    background:var(--terracotta);
-    border:4px solid var(--cream);
-    box-shadow:0 2px 8px rgba(44,40,35,.3);
-    cursor:pointer;
-  }
-  .slider::-moz-range-thumb{
-    width:26px;height:26px;
-    border-radius:50%;
-    background:var(--terracotta);
-    border:4px solid var(--cream);
-    box-shadow:0 2px 8px rgba(44,40,35,.3);
-    cursor:pointer;
-    border:none;
-  }
-  .slider::-moz-range-track{height:6px; border-radius:100px; background:var(--sand);}
-  .quoter__scale{display:flex; justify-content:space-between; font-size:12px; color:var(--ink-soft); margin-bottom:28px;}
-
-  .quoter__price-row{display:flex; flex-direction:column; gap:2px;}
-  .quoter__price{font-family:var(--font-display); font-size:44px; color:var(--ink); line-height:1.05;}
-  .quoter__price-sub{font-size:14px; color:var(--ink-soft);}
-  .quoter__total{margin-top:2px; font-size:14px; color:var(--ink-soft);}
-  .quoter__total strong{color:var(--ink); font-weight:600; font-family:var(--font-body);}
-  .quoter__extras-total{font-size:13px; color:var(--terracotta-deep); margin-top:2px; min-height:18px;}
-
-  .quoter__right{
-    background:var(--cream-deep);
-    border-radius:16px;
-    padding:28px 26px;
-  }
-  .quoter__right h3{font-family:var(--font-body); font-size:14px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); margin-bottom:16px;}
-  .quoter__list{list-style:none; display:flex; flex-direction:column; gap:12px; margin-bottom:22px;}
-  .quoter__list li{display:flex; align-items:flex-start; gap:10px; font-size:15px; color:var(--ink);}
-  .quoter__list li::before{
-    content:"";
-    flex-shrink:0;
-    width:18px;height:18px;
-    margin-top:2px;
-    border-radius:50%;
-    background:var(--terracotta);
-    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M9 16.2l-3.5-3.5-1.4 1.4L9 19 20 8l-1.4-1.4z'/%3E%3C/svg%3E") center/70% no-repeat;
-    mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M9 16.2l-3.5-3.5-1.4 1.4L9 19 20 8l-1.4-1.4z'/%3E%3C/svg%3E") center/70% no-repeat;
-  }
-  .quoter__list li.is-dynamic{font-weight:600;}
-
-  /* Extras */
-  .quoter__extras{
-    border-top:1px solid rgba(44,40,35,.1);
-    padding-top:18px;
-    margin-bottom:22px;
-    display:flex; flex-direction:column; gap:12px;
-  }
-  .extra{
-    display:flex; align-items:flex-start; gap:12px;
-    background:var(--cream);
-    border:1px solid rgba(44,40,35,.08);
-    border-left:3px solid var(--terracotta);
-    border-radius:12px;
-    padding:12px 14px;
-    cursor:pointer;
-  }
-  .extra--mist{border-left-color:var(--mist);}
-  .extra input{margin-top:3px; width:17px; height:17px; accent-color:var(--terracotta); flex-shrink:0;}
-  .extra--mist input{accent-color:var(--mist);}
-  .extra--mist .extra__price{color:var(--mist);}
-  .extra__body{flex:1;}
-  .extra__top{display:flex; justify-content:space-between; align-items:baseline; gap:8px;}
-  .extra__name{font-size:15px; font-weight:600; color:var(--ink);}
-  .extra__price{font-size:14px; color:var(--terracotta-deep); font-weight:600; white-space:nowrap;}
-  .extra__desc{font-size:13px; color:var(--ink-soft); margin-top:2px;}
-  .extra__link{
-    display:inline-block; margin-top:8px; font-size:13px; font-weight:600;
-    color:var(--terracotta-deep); text-decoration:underline;
-    text-underline-offset:3px;
-  }
-
-  .quoter__right .btn{width:100%; justify-content:center;}
-  .quoter__right .microcopy{text-align:center;}
-
-  /* Modal galería Flying Dress: mismo lenguaje visual que el portafolio completo */
-  .fd-modal{
-    position:fixed; inset:0; z-index:210;
-    display:flex;
-    align-items:flex-end;
-    justify-content:center;
-    background:rgba(20,18,16,0);
-    pointer-events:none;
-    transition:background .3s ease, backdrop-filter .3s ease;
-  }
-  .fd-modal.is-open{
-    background:rgba(20,18,16,.55);
-    backdrop-filter:blur(3px);
-    -webkit-backdrop-filter:blur(3px);
-    pointer-events:auto;
-  }
-  .fd-modal__panel{
-    display:flex;
-    flex-direction:column;
-    width:100%;
-    max-width:820px;
-    height:88vh;
-    background:var(--cream);
-    border-radius:28px 28px 0 0;
-    box-shadow:0 -30px 60px -20px rgba(20,18,16,.4);
-    transform:translateY(100%);
-    transition:transform .3s cubic-bezier(.22,.61,.36,1);
-    position:relative;
-  }
-  .fd-modal.is-open .fd-modal__panel{transform:translateY(0);}
-  .fd-modal__handle{width:42px; height:5px; border-radius:100px; background:var(--sand); margin:14px auto 0; flex-shrink:0;}
-  .fd-modal__header{
-    padding:10px var(--space-s) 14px;
-    border-bottom:1px solid rgba(44,40,35,.08);
-  }
-  .fd-modal h3{font-family:var(--font-display); font-size:22px; line-height:1.1;}
-  .fd-modal p{color:var(--ink-soft); font-size:13px; margin-top:4px;}
-  .fd-modal__close{
-    position:absolute; top:16px; right:18px;
-    background:transparent; color:var(--ink);
-    width:38px; height:38px; border-radius:50%;
-    border:1.5px solid var(--ink);
-    font-size:20px; line-height:1; cursor:pointer;
-    display:flex; align-items:center; justify-content:center;
-    transition:background .2s ease, color .2s ease, transform .2s ease;
-  }
-  .fd-modal__close:hover{background:var(--ink); color:var(--cream); transform:rotate(90deg);}
-  .fd-modal__body{flex:1; overflow-y:auto; padding:20px var(--space-s) 60px;}
-
-  /* ===================== PROMESA ===================== */
-  .promesa{
-    background:
-      radial-gradient(60% 90% at 50% 0%, rgba(161,114,89,.35), transparent 65%),
-      radial-gradient(50% 70% at 15% 100%, rgba(121,134,137,.22), transparent 70%),
-      var(--ink);
-    color:var(--cream);
-    text-align:center;
-  }
-  .promesa .container{max-width:820px;}
-  .promesa .eyebrow{color:var(--sand);}
-  .promesa h2{color:var(--white); font-size:clamp(26px,4.4vw,44px); font-style:italic;}
-  .promesa p{margin-top:22px; color:rgba(245,240,232,.82); font-size:17px; max-width:60ch; margin-left:auto; margin-right:auto;}
-
-  /* ===================== PORTAFOLIO ===================== */
-  .portafolio__head{max-width:640px; margin-bottom:var(--space-l);}
-  .portafolio__head h2{font-size:clamp(26px,4vw,40px);}
-  .portafolio__head p{margin-top:14px; color:var(--ink-soft);}
-
-  /* Carrusel: cada foto conserva su orientación real (vertical u horizontal), sin recortes */
-  .carousel-wrap{position:relative;}
-  .carousel{
-    display:flex;
-    gap:10px;
-    overflow-x:auto;
-    scroll-snap-type:x mandatory;
-    padding-bottom:6px;
-    scrollbar-width:none;
-  }
-  .carousel::-webkit-scrollbar{display:none;}
-  .carousel figure{
-    flex:0 0 auto;
-    height:190px;
-    scroll-snap-align:start;
-    border-radius:14px;
-    overflow:hidden;
-    cursor:pointer;
-    background:var(--cream-deep);
-  }
-  @media (min-width:720px){.carousel figure{height:250px;}}
-  .carousel img{height:100%; width:auto; display:block; transition:transform .5s ease;}
-  .carousel figure:hover img{transform:scale(1.04);}
-
-  .carousel__dots{display:flex; justify-content:center; gap:8px; margin-top:20px;}
-  .carousel__dots button{
-    width:8px; height:8px; border-radius:50%;
-    border:none; background:var(--sand); padding:0; cursor:pointer;
-    transition:background .2s ease, transform .2s ease;
-  }
-  .carousel__dots button.is-active{background:var(--terracotta); transform:scale(1.3);}
-
-  /* Flechas: flotan sobre el carrusel y solo aparecen al pasar el cursor (desktop) */
-  .carousel__nav{
-    position:absolute; top:0; bottom:6px;
-    display:flex; align-items:center;
-    pointer-events:none;
-  }
-  .carousel__nav--prev{left:-6px;}
-  .carousel__nav--next{right:-6px;}
-  .carousel__nav button{
-    width:38px; height:38px; border-radius:50%;
-    border:none; background:rgba(245,240,232,.92);
-    box-shadow:0 6px 16px -6px rgba(44,40,35,.4);
-    display:flex; align-items:center; justify-content:center;
-    cursor:pointer; font-size:15px; color:var(--ink);
-    opacity:0;
-    transform:translateY(0) scale(.9);
-    transition:opacity .2s ease, transform .2s ease, background .2s ease, color .2s ease;
-    pointer-events:auto;
-  }
-  .carousel-wrap:hover .carousel__nav button{opacity:1; transform:scale(1);}
-  .carousel__nav button:hover{background:var(--ink); color:var(--cream);}
-  @media (max-width:900px){ .carousel__nav{display:none;} }
-
-  .portafolio__footer{margin-top:30px; text-align:center;}
-
-  /* Lightbox */
-  .lightbox{
-    position:fixed;inset:0;z-index:300;
-    background:rgba(20,18,16,.92);
-    display:none;
-    align-items:flex-start;justify-content:center;
-    padding:80px 24px 24px;
-    overflow-y:auto;
-  }
-  .lightbox.is-open{display:flex;}
-  .lightbox img{max-width:100%; max-height:78vh; border-radius:8px;}
-  .lightbox__close{
-    position:fixed; top:20px; right:24px;
-    width:42px; height:42px; border-radius:50%;
-    background:rgba(245,240,232,.12);
-    border:1.5px solid rgba(245,240,232,.6);
-    color:var(--cream);
-    font-size:22px;cursor:pointer;line-height:1;
-    display:flex; align-items:center; justify-content:center;
-    transition:background .2s ease, transform .2s ease;
-    z-index:2;
-  }
-  .lightbox__close:hover{background:rgba(245,240,232,.9); color:var(--ink); transform:rotate(90deg);}
-
-  /* Modal portafolio completo: panel que sube desde abajo (bottom sheet), tampoco recorta las fotos */
-  .full-modal{
-    position:fixed; inset:0; z-index:210;
-    display:flex;
-    align-items:flex-end;
-    justify-content:center;
-    background:rgba(20,18,16,0);
-    backdrop-filter:blur(0px);
-    -webkit-backdrop-filter:blur(0px);
-    pointer-events:none;
-    transition:background .3s ease, backdrop-filter .3s ease;
-  }
-  .full-modal.is-open{
-    background:rgba(20,18,16,.55);
-    backdrop-filter:blur(3px);
-    -webkit-backdrop-filter:blur(3px);
-    pointer-events:auto;
-  }
-  .full-modal__panel{
-    display:flex;
-    flex-direction:column;
-    width:100%;
-    max-width:1080px;
-    height:90vh;
-    background:var(--cream);
-    border-radius:28px 28px 0 0;
-    box-shadow:0 -30px 60px -20px rgba(20,18,16,.4);
-    transform:translateY(100%);
-    transition:transform .3s cubic-bezier(.22,.61,.36,1);
-  }
-  .full-modal.is-open .full-modal__panel{transform:translateY(0);}
-
-  .full-modal__handle{
-    width:42px; height:5px; border-radius:100px;
-    background:var(--sand);
-    margin:14px auto 0;
-    flex-shrink:0;
-  }
-  .full-modal__header{
-    position:sticky; top:0; z-index:2;
-    display:flex; align-items:center; justify-content:space-between;
-    gap:16px;
-    padding:14px var(--space-s) 18px;
-    background:var(--cream);
-    border-bottom:1px solid rgba(44,40,35,.08);
-    border-radius:28px 28px 0 0;
-  }
-  .full-modal__titles h3{font-family:var(--font-display); font-size:22px; line-height:1.1;}
-  .full-modal__titles span{font-size:13px; color:var(--ink-soft);}
-  .full-modal__close{
-    background:transparent; color:var(--ink);
-    width:38px; height:38px; border-radius:50%;
-    border:1.5px solid var(--ink);
-    font-size:20px; line-height:1; cursor:pointer;
-    display:flex; align-items:center; justify-content:center;
-    flex-shrink:0;
-    transition:background .2s ease, color .2s ease, transform .2s ease;
-  }
-  .full-modal__close:hover{background:var(--ink); color:var(--cream); transform:rotate(90deg);}
-  .full-modal__body{
-    flex:1;
-    overflow-y:auto;
-    padding:24px var(--space-s) 70px;
-  }
-  /* Colaje tipo polaroid — compartido por el portafolio completo y el de flying dress */
-  .masonry{
-    columns:2 140px; column-gap:0;
-    max-width:980px; margin:0 auto;
-  }
-  @media (min-width:560px){.masonry{columns:3 170px;}}
-  @media (min-width:860px){.masonry{columns:4 200px;}}
-  /* El panel de flying dress es más angosto: nunca pasa de 3 columnas */
-  .fd-modal .masonry{max-width:100%;}
-  @media (min-width:860px){.fd-modal .masonry{columns:3 170px;}}
-  .masonry figure{
-    break-inside:avoid;
-    margin:0 -4px 14px;
-    padding:8px 8px 20px;
-    background:var(--white);
-    border-radius:6px;
-    box-shadow:0 10px 22px -10px rgba(44,40,35,.35);
-    cursor:pointer;
-    transition:transform .3s ease, box-shadow .3s ease, z-index 0s;
-    position:relative;
-  }
-  .masonry img{width:100%; display:block; border-radius:2px;}
-  .masonry figure:nth-child(6n+1){transform:rotate(-3deg);}
-  .masonry figure:nth-child(6n+2){transform:rotate(2deg);}
-  .masonry figure:nth-child(6n+3){transform:rotate(-1.4deg);}
-  .masonry figure:nth-child(6n+4){transform:rotate(2.6deg);}
-  .masonry figure:nth-child(6n+5){transform:rotate(-2.2deg);}
-  .masonry figure:nth-child(6n){transform:rotate(1.6deg);}
-  .masonry figure:hover{
-    transform:rotate(0deg) scale(1.05);
-    box-shadow:0 20px 34px -14px rgba(44,40,35,.5);
-    z-index:5;
-  }
-
-  /* ===================== SOBRE MÍ ===================== */
-  .sobre{background:var(--sand); color:var(--ink);}
-  .sobre .eyebrow{color:var(--mist);}
-  .sobre__grid{display:grid; gap:var(--space-l); align-items:center;}
-  @media (min-width:880px){.sobre__grid{grid-template-columns:0.8fr 1.2fr; gap:var(--space-xl);}}
-  .sobre__photo{
-    border-radius:20px;
-    overflow:hidden;
-    aspect-ratio:4/5;
-  }
-  .sobre__photo img{width:100%;height:100%;object-fit:cover;}
-  .sobre h2{font-size:clamp(26px,4vw,38px);}
-  .sobre .lead{
-    font-family:var(--font-display);
-    font-style:italic;
-    font-size:20px;
-    margin-top:16px;
-    color:var(--ink);
-  }
-  .sobre p{margin-top:16px; color:#3f3a32; font-size:16px; max-width:56ch;}
-  .sobre__quote{
-    margin-top:22px;
-    padding-left:18px;
-    border-left:3px solid var(--terracotta);
-    font-style:italic;
-    color:var(--ink);
-    font-size:15px;
-  }
-  .sobre__sig{margin-top:22px; font-family:var(--font-display); font-size:19px;}
-  .sobre__footer{margin-top:30px;}
-  .sobre .btn-ghost{border-color:var(--ink);}
-
-  /* ===================== PRUEBA SOCIAL ===================== */
-  .social{background:linear-gradient(180deg, rgba(121,134,137,.10), rgba(121,134,137,0) 60%), var(--cream); text-align:center;}
-  .social .container{max-width:760px;}
-  .social__mark{font-family:var(--font-display); font-size:64px; color:var(--terracotta); line-height:1; margin-bottom:6px;}
-  .social p{font-family:var(--font-display); font-size:clamp(20px,3vw,28px); font-style:italic; color:var(--ink);}
-
-  /* ===================== CTA FINAL ===================== */
-  .cta-final{
-    background:var(--cream-deep);
-    text-align:center;
-  }
-  .cta-final h2{font-size:clamp(28px,5vw,48px); max-width:14ch; margin:0 auto;}
-  .cta-final .btn{margin-top:30px;}
-
-  /* ===================== FOOTER ===================== */
-  footer{
-    background:var(--ink);
-    color:rgba(245,240,232,.75);
-    padding:var(--space-l) 0 var(--space-m);
-    text-align:center;
-  }
-  .footer__logo{height:30px; margin:0 auto 18px; filter:brightness(0) invert(1); opacity:.85;}
-  .footer__social{display:flex; justify-content:center; gap:22px; margin-bottom:22px; font-size:14px;}
-  .footer__social a{opacity:.85;}
-  .footer__social a:hover{opacity:1; color:var(--mist);}
-  footer .fine{font-size:12px; opacity:.55;}
-</style>
+<!-- Medición (Pixel + CAPI deduplicado) · calendario · interfaz -->
+<script src="assets/js/tracking.js" defer></script>
+<script src="assets/js/cal.js" defer></script>
+<script src="assets/js/main.js" defer></script>
 </head>
 <body>
 
@@ -711,7 +86,7 @@
     Brumar
   </a>
   <!-- CTA único: sin menú de navegación con enlaces adicionales, por doctrina CRO -->
-  <button type="button" class="btn" data-cal-link="estudiobrumar/secret" data-cal-config='{"layout":"month_view"}'>Agendar cafecito ☕️</button>
+  <button data-track="InteresadoReunion" data-track-name="Reunión · nav" type="button" class="btn" data-cal-link="estudiobrumar/secret" data-cal-config='{"layout":"month_view"}'>Agendar cafecito ☕️</button>
 </nav>
 
 <!-- ============ HERO ============ -->
@@ -721,9 +96,9 @@
     <h1>Vuelve a casa con algo más que arena en los zapatos.</h1>
     <p>Mereces un imán para el refri, sí — pero también recuerdos reales de tu familia relajada, feliz y presente en la playa.</p>
     <div class="hero__cta">
-      <button type="button" class="btn" data-cal-link="estudiobrumar/secret" data-cal-config='{"layout":"month_view"}'>Va, organicemos la sesión</button>
+      <button data-track="InteresadoReunion" data-track-name="Reunión · hero" type="button" class="btn" data-cal-link="estudiobrumar/secret" data-cal-config='{"layout":"month_view"}'>Va, organicemos la sesión</button>
       <div class="hero__alt">
-        <a href="https://api.whatsapp.com/send?phone=+529982247502&text=%C2%A1Hola!%20%F0%9F%91%8B%20Me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20las%20sesiones%20de%20fotos." target="_blank" rel="noopener">o escríbenos por WhatsApp</a>
+        <a data-track="Contact" data-track-name="WhatsApp · hero" href="https://api.whatsapp.com/send?phone=+529982247502&text=%C2%A1Hola!%20%F0%9F%91%8B%20Me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20las%20sesiones%20de%20fotos." target="_blank" rel="noopener">o escríbenos por WhatsApp</a>
       </div>
     </div>
   </div>
@@ -822,7 +197,7 @@
                 <span class="extra__price">+$500</span>
               </div>
               <p class="extra__desc">Vestido volador para esas fotos icónicas con vista aérea.</p>
-              <button type="button" class="extra__link" id="fdOpenBtn">Ver portafolio de flying dress</button>
+              <button type="button" class="extra__link" id="fdOpenBtn" data-track="VioPortafolio" data-track-name="Portafolio flying dress">Ver portafolio de flying dress</button>
             </div>
           </label>
 
@@ -838,7 +213,7 @@
           </label>
         </div>
 
-        <a href="#" class="btn" id="qWhatsapp" target="_blank" rel="noopener">Reservar este paquete</a>
+        <a href="https://wa.me/529982247502" class="btn" id="qWhatsapp" target="_blank" rel="noopener" data-track="Contact" data-track-name="Cotizador">Reservar este paquete</a>
         <span class="microcopy">Precio referencial. Se confirma en la llamada de planificación.</span>
       </div>
     </div>
@@ -915,7 +290,7 @@
       <div class="carousel__dots" id="carDots"></div>
     </div>
     <div class="portafolio__footer">
-      <button type="button" class="btn btn-ghost" id="openFullPortfolio1">Ver portafolio completo</button>
+      <button type="button" class="btn btn-ghost" id="openFullPortfolio1" data-track="VioPortafolio" data-track-name="Portafolio completo · portafolio">Ver portafolio completo</button>
     </div>
   </div>
 </section>
@@ -984,7 +359,7 @@
       <p class="sobre__quote">Porque como dijo el tío Ben en Spiderman: "¡Un gran poder conlleva una gran responsabilidad!"</p>
       <div class="sobre__sig">Te dejo mi portafolio.</div>
       <div class="sobre__footer">
-        <button type="button" class="btn btn-ghost" id="openFullPortfolio2">Ver portafolio completo</button>
+        <button type="button" class="btn btn-ghost" id="openFullPortfolio2" data-track="VioPortafolio" data-track-name="Portafolio completo · sobre mí">Ver portafolio completo</button>
       </div>
     </div>
   </div>
@@ -1003,10 +378,10 @@
   <div class="container reveal">
     <span class="eyebrow">¿Listos para su sesión?</span>
     <h2>Organicemos los recuerdos de tus próximas vacaciones.</h2>
-    <button type="button" class="btn" data-cal-link="estudiobrumar/secret" data-cal-config='{"layout":"month_view"}'>Va, organicemos la sesión</button>
+    <button data-track="InteresadoReunion" data-track-name="Reunión · cierre" type="button" class="btn" data-cal-link="estudiobrumar/secret" data-cal-config='{"layout":"month_view"}'>Va, organicemos la sesión</button>
     <span class="microcopy">Sin formularios ni compromiso. Respondo en menos de 24h.</span>
     <div class="cta-final__alt">
-      <a href="https://api.whatsapp.com/send?phone=+529982247502&text=%C2%A1Hola!%20%F0%9F%91%8B%20Me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20las%20sesiones%20de%20fotos." target="_blank" rel="noopener">o escríbenos por WhatsApp</a>
+      <a data-track="Contact" data-track-name="WhatsApp · cierre" href="https://api.whatsapp.com/send?phone=+529982247502&text=%C2%A1Hola!%20%F0%9F%91%8B%20Me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20las%20sesiones%20de%20fotos." target="_blank" rel="noopener">o escríbenos por WhatsApp</a>
     </div>
   </div>
 </section>
@@ -1017,9 +392,14 @@
     <img class="footer__logo" src="https://res.cloudinary.com/dcio95v6m/image/upload/w_120,q_auto,f_auto/v1781577112/ISOTIPO-09_pgk5wl.png" alt="Brumar">
     <div class="footer__social">
       <a href="https://www.instagram.com/estudiobrumar/" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://api.whatsapp.com/send?phone=+529982247502&text=%C2%A1Hola!%20%F0%9F%91%8B%20Me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20las%20sesiones%20de%20fotos." target="_blank" rel="noopener">WhatsApp</a>
+      <a data-track="Contact" data-track-name="WhatsApp · footer" href="https://api.whatsapp.com/send?phone=+529982247502&text=%C2%A1Hola!%20%F0%9F%91%8B%20Me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20las%20sesiones%20de%20fotos." target="_blank" rel="noopener">WhatsApp</a>
     </div>
-    <p class="fine">© 2026 Brumar — Fotografía familiar en Cancún. Tus datos solo se usan para responder tu mensaje, nunca se comparten con terceros.</p>
+    <nav class="footer__links" aria-label="Enlaces secundarios">
+      <a href="blog/index.html">Blog</a>
+      <a href="recursos/index.html">Recursos gratis</a>
+      <a href="privacidad.html">Política de privacidad</a>
+    </nav>
+    <p class="fine">© 2026 Brumar — Fotografía familiar en Cancún. Usamos cookies y el Pixel de Meta para medir nuestros anuncios; nunca vendemos tus datos.</p>
   </div>
 </footer>
 
@@ -1029,291 +409,8 @@
   <img id="lightboxImg" src="" alt="">
 </div>
 
-<!-- CAL.COM EMBED: el calendario está oculto hasta que se hace clic en un botón "Agendar" — entonces aparece como ventana emergente sobre la misma página, sin recargar ni salir del sitio -->
-<script type="text/javascript">
-  (function (C, A, L) {
-    let p = function (a, ar) { a.q.push(ar); };
-    let d = C.document;
-    C.Cal = C.Cal || function () {
-      let cal = C.Cal; let ar = arguments;
-      if (!cal.loaded) {
-        cal.ns = {}; cal.q = cal.q || [];
-        d.head.appendChild(d.createElement("script")).src = A;
-        cal.loaded = true;
-      }
-      if (ar[0] === L) {
-        const api = function () { p(api, arguments); };
-        const namespace = ar[1];
-        api.q = api.q || [];
-        if (typeof namespace === "string") {
-          cal.ns[namespace] = cal.ns[namespace] || api;
-          p(cal.ns[namespace], ar);
-          p(cal, ["initNamespace", namespace]);
-        } else p(cal, ar);
-        return;
-      }
-      p(cal, ar);
-    };
-  })(window, "https://app.cal.com/embed/embed.js", "init");
-
-  Cal("init", { origin: "https://cal.com" });
-
-  Cal("ui", {
-    "cssVarsPerTheme": {
-      "light": { "cal-brand": "#a17259" },
-      "dark": { "cal-brand": "#a17259" }
-    },
-    "hideEventTypeDetails": false,
-    "layout": "month_view"
-  });
-</script>
-
-<!-- META PIXEL -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1077080621499266');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1077080621499266&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
-<!-- GOOGLE TAG: pega aquí tu Google Tag / GA4 (analytics.google.com) -->
-<!-- TIKTOK PIXEL: pega aquí tu TikTok Pixel (TikTok Ads Manager → Assets → Events) -->
-<!-- CONVERSIONS API: pega aquí el script de CAPI (Business Manager → Events Manager → CAPI) -->
-<!-- Regla de oro: si por ahora no vas a hacer ads, no instales ningún pixel todavía. -->
-
-<script>
-  // Nav: fondo sólido al hacer scroll
-  const nav = document.getElementById('siteNav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('is-solid', window.scrollY > 40);
-  }, { passive:true });
-
-  // Scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
-  }, { threshold:0.12 });
-  revealEls.forEach(el => io.observe(el));
-
-  // Cotizador
-  const qSlider = document.getElementById('qSlider');
-  const qCount = document.getElementById('qCount');
-  const qTierLabel = document.getElementById('qTierLabel');
-  const qTotal = document.getElementById('qTotal');
-  const qExtrasTotal = document.getElementById('qExtrasTotal');
-  const qList = document.getElementById('qList');
-  const qWhatsapp = document.getElementById('qWhatsapp');
-  const extraCheckboxes = document.querySelectorAll('.quoter__extras input[type="checkbox"]');
-
-  function getTier(n){
-    if (n <= 19) return { name:'Paquete Básico', edicion:'Edición básica', cambios:null };
-    if (n <= 29) return { name:'Paquete Estándar', edicion:'Edición profesional', cambios:null };
-    if (n <= 34) return { name:'Paquete Avanzado', edicion:'Edición profesional', cambios:'1 cambio de ropa' };
-    return { name:'Paquete Premium', edicion:'Edición profesional', cambios:'2 cambios de ropa' };
-  }
-
-  // Precio total según la cantidad de fotos (lista de precios oficial)
-  // 10–20 fotos: $900 + $60 por foto extra · 21–30: +$50 c/u · 31–40: +$40 c/u
-  function getBasePrice(n){
-    if (n <= 20) return 900 + (n - 10) * 60;
-    if (n <= 30) return 1500 + (n - 20) * 50;
-    return 2000 + (n - 30) * 40;
-  }
-
-  function getSelectedExtras(){
-    return Array.from(extraCheckboxes)
-      .filter(cb => cb.checked)
-      .map(cb => ({
-        name: cb.closest('.extra').querySelector('.extra__name').textContent,
-        price: parseInt(cb.dataset.price, 10)
-      }));
-  }
-
-  function updateQuoter(){
-    const n = parseInt(qSlider.value, 10);
-    const tier = getTier(n);
-    const basePrice = getBasePrice(n);
-    const extras = getSelectedExtras();
-    const extrasSum = extras.reduce((sum, e) => sum + e.price, 0);
-    const total = basePrice + extrasSum;
-
-    qCount.textContent = n;
-    qTierLabel.textContent = tier.name;
-    qTierLabel.classList.toggle('is-mist', n <= 29);
-    qTotal.textContent = '$' + total.toLocaleString('es-MX') + ' MXN';
-
-    qExtrasTotal.textContent = extras.length
-      ? '+ ' + extras.map(e => `${e.name} ($${e.price})`).join(' + ')
-      : '';
-
-    const items = [
-      'Llamada de planificación',
-      'Dirección de posado',
-      'Galería de selección',
-      tier.edicion
-    ];
-    if (tier.cambios) items.push(tier.cambios);
-
-    qList.innerHTML = items.map(it => `<li>${it}</li>`).join('')
-      + `<li class="is-dynamic">${n} fotos editadas incluidas</li>`;
-
-    const extrasMsg = extras.length ? ` + ${extras.map(e => e.name).join(' + ')}` : '';
-    const msg = encodeURIComponent(`Hola Adriel, quiero reservar el ${tier.name} de ${n} fotos${extrasMsg} (total aprox. $${total} MXN).`);
-    qWhatsapp.href = `https://wa.me/529982247502?text=${msg}`;
-  }
-
-  qSlider.addEventListener('input', updateQuoter);
-  extraCheckboxes.forEach(cb => cb.addEventListener('change', updateQuoter));
-  updateQuoter();
-
-  // Modal Flying Dress
-  const fdModal = document.getElementById('fdModal');
-  const fdOpenBtn = document.getElementById('fdOpenBtn');
-  const fdCloseBtn = document.getElementById('fdCloseBtn');
-  fdOpenBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    fdModal.classList.add('is-open');
-  });
-  function closeFdModal(){ fdModal.classList.remove('is-open'); }
-  fdCloseBtn.addEventListener('click', closeFdModal);
-  fdModal.addEventListener('click', (e) => { if (e.target === fdModal) closeFdModal(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeFdModal(); });
-  document.getElementById('fdGrid').addEventListener('click', (e) => {
-    const img = e.target.closest('img');
-    if (img) openLightbox(img);
-  });
-
-  // Lightbox (funciona para el carrusel y el portafolio completo)
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightboxImg');
-  function bigUrl(src){ return src.replace(/\/upload\/[^/]+\//, '/upload/q_auto,f_auto,w_1400/'); }
-  function openLightbox(img){
-    const hiResSrc = bigUrl(img.src);
-    // Muestra al instante la miniatura que ya está en caché (sin esperar),
-    // y la reemplaza por la versión nítida en cuanto termine de cargar.
-    lightboxImg.src = img.src;
-    lightboxImg.alt = img.alt;
-    lightbox.classList.add('is-open');
-    if (hiResSrc !== img.src) {
-      const hiRes = new Image();
-      hiRes.onload = () => { lightboxImg.src = hiResSrc; };
-      hiRes.src = hiResSrc;
-    }
-  }
-  function closeLightbox(){ lightbox.classList.remove('is-open'); lightboxImg.src=''; }
-  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
-  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
-
-  // Carrusel de portafolio
-  const carousel = document.getElementById('portfolioCarousel');
-  const carFigures = Array.from(carousel.querySelectorAll('figure'));
-  const carDots = document.getElementById('carDots');
-
-  carousel.addEventListener('click', (e) => {
-    const img = e.target.closest('img');
-    if (img) openLightbox(img);
-  });
-
-  // Puntos agrupados (menos puntos: uno cada 3 fotos, no uno por foto)
-  const GROUP_SIZE = 3;
-  const groupStarts = [];
-  for (let i = 0; i < carFigures.length; i += GROUP_SIZE) groupStarts.push(i);
-
-  groupStarts.forEach((startIndex, gi) => {
-    const dot = document.createElement('button');
-    dot.type = 'button';
-    dot.setAttribute('aria-label', `Ir al grupo de fotos ${gi + 1}`);
-    if (gi === 0) dot.classList.add('is-active');
-    dot.addEventListener('click', () => {
-      carousel.scrollTo({ left: carFigures[startIndex].offsetLeft, behavior:'smooth' });
-    });
-    carDots.appendChild(dot);
-  });
-  const dotEls = Array.from(carDots.children);
-
-  function setActiveDot(){
-    let closest = 0, min = Infinity;
-    carFigures.forEach((fig, i) => {
-      const dist = Math.abs(fig.offsetLeft - carousel.scrollLeft);
-      if (dist < min) { min = dist; closest = i; }
-    });
-    const activeGroup = Math.floor(closest / GROUP_SIZE);
-    dotEls.forEach((d, i) => d.classList.toggle('is-active', i === activeGroup));
-    return closest;
-  }
-  let scrollTicking = false;
-  carousel.addEventListener('scroll', () => {
-    if (!scrollTicking) {
-      requestAnimationFrame(() => { setActiveDot(); scrollTicking = false; });
-      scrollTicking = true;
-    }
-  });
-
-  // Flechas: avanzan/retroceden un ancho de pantalla del carrusel
-  document.getElementById('carPrev').addEventListener('click', () => {
-    carousel.scrollBy({ left: -carousel.clientWidth * 0.85, behavior:'smooth' });
-  });
-  document.getElementById('carNext').addEventListener('click', () => {
-    carousel.scrollBy({ left: carousel.clientWidth * 0.85, behavior:'smooth' });
-  });
-
-  // Movimiento automático: avanza sola cada 3.5s (solo mueve el carrusel, nunca la página),
-  // se pausa si el usuario interactúa y solo corre mientras el carrusel está a la vista.
-  let carAutoplay = null;
-  function startAutoplay(){
-    if (carAutoplay) return; // ya está corriendo: nunca crear un segundo intervalo
-    carAutoplay = setInterval(() => {
-      const current = setActiveDot();
-      const next = carFigures[(current + 1) % carFigures.length];
-      carousel.scrollTo({ left: next.offsetLeft, behavior:'smooth' });
-    }, 2000);
-  }
-  function pauseAutoplay(){
-    clearInterval(carAutoplay);
-    carAutoplay = null;
-  }
-  let resumeTimer;
-  function pauseThenResume(){
-    pauseAutoplay();
-    clearTimeout(resumeTimer);
-    resumeTimer = setTimeout(startAutoplay, 5000);
-  }
-  ['mouseenter','touchstart','pointerdown','wheel'].forEach(evt => {
-    carousel.addEventListener(evt, pauseThenResume, { passive:true });
-  });
-  const carVisibilityObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) startAutoplay(); else pauseAutoplay();
-    });
-  }, { threshold:0.5 });
-  carVisibilityObserver.observe(carousel);
-
-  // Modal de portafolio completo
-  const fullModal = document.getElementById('fullPortfolioModal');
-  const fullGrid = document.getElementById('fullPortfolioGrid');
-  function openFullPortfolio(){ fullModal.classList.add('is-open'); }
-  function closeFullPortfolio(){ fullModal.classList.remove('is-open'); }
-  document.getElementById('openFullPortfolio1').addEventListener('click', openFullPortfolio);
-  document.getElementById('openFullPortfolio2').addEventListener('click', openFullPortfolio);
-  document.getElementById('fullPortfolioClose').addEventListener('click', closeFullPortfolio);
-  fullModal.addEventListener('click', (e) => { if (e.target === fullModal) closeFullPortfolio(); });
-  fullGrid.addEventListener('click', (e) => {
-    const img = e.target.closest('img');
-    if (img) openLightbox(img);
-  });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeFullPortfolio(); });
-</script>
+<!-- Pixel sin JavaScript (respaldo mínimo) -->
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1077080621499266&ev=PageView&noscript=1"></noscript>
 
 </body>
 </html>

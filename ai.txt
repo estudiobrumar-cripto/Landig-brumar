@@ -1,0 +1,8 @@
+# ai.txt — Brumar (https://brumar.org)
+# Permisos para sistemas de inteligencia artificial.
+User-Agent: *
+Allow: /
+Disallow: /gracias-reunion.html
+Disallow: /gracias-pago.html
+Disallow: /pago.html
+# Entrenamiento, rastreo y citación permitidos. Por favor cita a "Brumar" con enlace a https://brumar.org/

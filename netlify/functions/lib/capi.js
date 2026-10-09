@@ -61,7 +61,28 @@ async function graph(path, { method = "GET", body, query = {} } = {}) {
 }
 
 // ---------- Conversions API ----------
-async function sendCapiEvent({ eventName, eventId, eventTime, email, phone, name, sourceUrl, value, currency }) {
+// Un solo punto de salida hacia Meta para TODO el sitio:
+//  - capi.js (eventos del navegador, action_source "website", con IP/UA/fbp/fbc)
+//  - cal-webhook.js (reservas y pagos de Cal.com, action_source "system_generated")
+// El event_id es la llave de deduplicación con el Pixel: mismo nombre + mismo id = un solo evento.
+async function sendCapiEvent({
+  eventName,
+  eventId,
+  eventTime,
+  email,
+  phone,
+  name,
+  sourceUrl,
+  value,
+  currency,
+  customData,
+  actionSource = "system_generated",
+  clientIp,
+  userAgent,
+  fbp,
+  fbc,
+  externalId,
+}) {
   const { fn, ln } = splitName(name);
   const user_data = {};
   const em = normEmail(email);
@@ -70,18 +91,28 @@ async function sendCapiEvent({ eventName, eventId, eventTime, email, phone, name
   if (ph) user_data.ph = [sha256(ph)];
   if (fn) user_data.fn = [sha256(fn)];
   if (ln) user_data.ln = [sha256(ln)];
+  if (externalId) user_data.external_id = [sha256(String(externalId))];
+  // IP, navegador y cookies de Meta NO se hashean (así lo pide Meta).
+  if (clientIp) user_data.client_ip_address = clientIp;
+  if (userAgent) user_data.client_user_agent = userAgent;
+  if (fbp) user_data.fbp = fbp;
+  if (fbc) user_data.fbc = fbc;
 
   const event = {
     event_name: eventName,
     event_time: eventTime || Math.floor(Date.now() / 1000),
     event_id: eventId, // deduplicación
-    // La reserva ocurre en Cal.com (no tenemos el user agent del navegador),
-    // así que se reporta como evento generado por sistema, no como "website".
-    action_source: "system_generated",
+    action_source: actionSource,
     event_source_url: sourceUrl,
     user_data,
   };
-  if (value) event.custom_data = { value: Number(value), currency: currency || "MXN" };
+
+  const custom = { ...(customData || {}) };
+  if (value !== undefined && value !== null && value !== "" && isFinite(Number(value))) {
+    custom.value = Number(value);
+    custom.currency = (currency || custom.currency || "MXN").toUpperCase();
+  }
+  if (Object.keys(custom).length) event.custom_data = custom;
 
   const body = { data: [event] };
   if (process.env.META_TEST_EVENT_CODE) body.test_event_code = process.env.META_TEST_EVENT_CODE;

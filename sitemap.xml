@@ -2,10 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://brumar.org/</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-09</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://brumar.org/blog/</loc>
+    <lastmod>2026-10-09</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://brumar.org/blog/cuanto-cuesta-sesion-fotos-familiar-cancun.html</loc>
+    <lastmod>2026-10-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://brumar.org/blog/que-ropa-usar-sesion-fotos-playa.html</loc>
+    <lastmod>2026-10-09</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://brumar.org/blog/mejor-hora-sesion-fotos-playa-cancun.html</loc>
+    <lastmod>2026-10-09</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://brumar.org/recursos/</loc>
+    <lastmod>2026-10-09</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://brumar.org/recursos/checklist-sesion-fotos-playa.html</loc>
+    <lastmod>2026-10-09</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://brumar.org/recursos/paletas-colores-ropa-playa.html</loc>
+    <lastmod>2026-10-09</lastmod>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://brumar.org/privacidad.html</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-09</lastmod>
+    <priority>0.2</priority>
   </url>
 </urlset>
