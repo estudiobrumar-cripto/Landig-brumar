@@ -4,7 +4,8 @@
 
 const crypto = require("crypto");
 
-const GRAPH = "https://graph.facebook.com/v21.0";
+// v21.0 caduca en 2026: se usa v23.0 por defecto (se puede cambiar con la variable META_GRAPH_VERSION).
+const GRAPH = `https://graph.facebook.com/${process.env.META_GRAPH_VERSION || "v23.0"}`;
 const AUDIENCE_NAME = "Agendaron sesión - Estudio Brumar";
 
 const sha256 = (v) =>
@@ -72,7 +73,9 @@ async function sendCapiEvent({ eventName, eventId, eventTime, email, phone, name
     event_name: eventName,
     event_time: eventTime || Math.floor(Date.now() / 1000),
     event_id: eventId, // deduplicación
-    action_source: "website",
+    // La reserva ocurre en Cal.com (no tenemos el user agent del navegador),
+    // así que se reporta como evento generado por sistema, no como "website".
+    action_source: "system_generated",
     event_source_url: sourceUrl,
     user_data,
   };
