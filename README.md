@@ -46,7 +46,7 @@ Landing de fotografía familiar en Cancún + blog + recursos gratis, con medici�
 
 **Cómo trabaja Brumar:** cobra por fuera y solo agenda la sesión cuando ya le pagaron, así que cada reserva de sesión es una venta.
 
-**El monto de la compra:** al agendar una sesión en Cal, escribe el monto en "Notas adicionales" (ej. `Monto: 2400` o `Total $2,400`). Ese número viaja a Meta como valor de la Compra. Sin monto se envía con valor 0 y queda un aviso en los logs de Netlify.
+**El monto de la compra:** al agendar una sesión en Cal, escribe el monto en "Notas adicionales" (ej. `450`, `Monto: 2400` o `Total $2,400`). Ese número viaja a Meta como valor de la Compra. Sin monto se envía con valor 0 y queda un aviso en los logs de Netlify.
 
 **Precios desde la landing:** el botón del cotizador manda `Contact` con `value` = total elegido (fotos + extras).
 

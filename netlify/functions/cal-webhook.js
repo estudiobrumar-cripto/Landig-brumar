@@ -79,9 +79,10 @@ function findAmount(p) {
     const n = v != null ? toNumber(v) : null;
     if (n) return n;
   }
-  const notes = [p.additionalNotes, p.description, r.notes && r.notes.value, typeof r.notes === "string" ? r.notes : ""]
-    .filter((x) => typeof x === "string")
-    .join(" ");
+  // Solo las "Notas adicionales" de la reserva (Cal las repite en dos lugares; se toma una).
+  // payload.description NO se usa: es el texto del tipo de evento, no de la reserva.
+  const notes = [p.additionalNotes, r.notes && r.notes.value, typeof r.notes === "string" ? r.notes : ""]
+    .find((x) => typeof x === "string" && x.trim()) || "";
   const labeled = notes.match(/(?:monto|precio|total|pag[oó]|cobr[eéo])\D{0,12}?([\d][\d.,\s]*\d|\d)/i);
   if (labeled) {
     const n = toNumber(labeled[1]);
@@ -90,6 +91,12 @@ function findAmount(p) {
   const money = notes.match(/\$\s*([\d][\d.,]*)/);
   if (money) {
     const n = toNumber(money[1]);
+    if (n) return n;
+  }
+  // Notas que son SOLO un número: "450", "2,400", "1800 mxn", "450 pesos"
+  const plain = notes.trim().match(/^\$?\s*([\d][\d.,\s]*)\s*(?:mxn|pesos|mx)?\.?$/i);
+  if (plain) {
+    const n = toNumber(plain[1]);
     if (n) return n;
   }
   const payment = Array.isArray(p.payment) ? p.payment.find((x) => x && x.success !== false && x.amount) : null;
