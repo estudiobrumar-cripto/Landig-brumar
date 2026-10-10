@@ -12,7 +12,8 @@
 // EL MONTO: al agendar, escríbelo en "Notas adicionales" de la reserva, por ejemplo:
 //   "Monto: 2400"   o   "Total $2,400"
 // (también se lee un campo del formulario llamado monto, precio o total, si algún día lo agregas).
-// Sin monto, la compra se envía con valor 0 y queda un aviso en los logs de Netlify.
+// Sin monto, la compra se envía SIN valor (nunca $0: Meta lo marca como "precio de relleno")
+// y queda un aviso en los logs de Netlify.
 //
 // Webhook en Cal.com → Ajustes → Desarrollador → Webhooks, evento "Reserva creada".
 // URL: https://brumar.org/.netlify/functions/cal-webhook
@@ -153,7 +154,7 @@ exports.handler = async (event) => {
       name,
       sourceUrl: `https://cal.com/${CAL_USER}/${slug}`,
       customData: { content_name: slug, content_category: "sesion", num_items: 1 },
-      value: amount || 0,
+      value: amount || undefined, // nunca 0
       currency: "MXN",
     }),
     addToAudience({ email, phone, name }),
@@ -168,7 +169,7 @@ exports.handler = async (event) => {
     event: "Purchase",
     event_id: eventId,
     slug,
-    value: amount || 0,
+    value: amount || null,
     capi: capi.status,
     audience: aud.status,
   });
