@@ -1,34 +1,34 @@
 // netlify/functions/cal-webhook.js
 // Cal.com -> Netlify Function -> Meta (Conversions API + audiencia)
 //
-// Qué evento sale según lo que pase en Cal.com:
-//   BOOKING_CREATED en la REUNIÓN (slug "secret")   -> Lead      ("Cliente potencial")
-//   BOOKING_CREATED en una SESIÓN DE FOTOS           -> Schedule  ("Programar") + audiencia
-//   BOOKING_PAID    en una SESIÓN DE FOTOS           -> Purchase  ("Compra") con el monto pagado
+// Cómo trabaja Brumar: Adriel cobra por fuera y SOLO agenda la sesión cuando ya le pagaron.
+// Por eso, una reserva nueva de SESIÓN DE FOTOS = una venta:
+//   BOOKING_CREATED en una sesión  -> Purchase ("Compra") con el monto + audiencia "Agendaron sesión"
 //
-// Deduplicación: los event_id ("lead_<uid>", "schedule_<uid>", "purchase_<uid>") son los
-// MISMOS que dispara el Pixel en gracias-reunion.html, pago.html y gracias-pago.html.
-// Si Cal reintenta el webhook, Meta tampoco lo cuenta dos veces.
+// Lead ("Cliente potencial") y Schedule ("Programar") NO salen de aquí: los dispara la app
+// "Meta Pixel" instalada en cada tipo de evento de Cal.com (Reunión → Lead, sesiones → Schedule).
+// Si también salieran del servidor, Meta los contaría dos veces.
 //
-// En Cal.com → Settings → Developer → Webhooks, activa: Booking Created, Booking Paid
-// (y "Ping" para probar). URL: https://brumar.org/.netlify/functions/cal-webhook
+// EL MONTO: al agendar, escríbelo en "Notas adicionales" de la reserva, por ejemplo:
+//   "Monto: 2400"   o   "Total $2,400"
+// (también se lee un campo del formulario llamado monto, precio o total, si algún día lo agregas).
+// Sin monto, la compra se envía con valor 0 y queda un aviso en los logs de Netlify.
+//
+// Webhook en Cal.com → Ajustes → Desarrollador → Webhooks, evento "Reserva creada".
+// URL: https://brumar.org/.netlify/functions/cal-webhook
 
 const crypto = require("crypto");
 const { sendCapiEvent, addToAudience } = require("./lib/capi");
 
 const CAL_USER = "estudiobrumar";
 
-// Reunión de planificación (botones "Agendar cafecito" / "Va, organicemos la sesión")
-const MEETING_SLUGS = new Set(["secret"]);
-
-// Sesiones de fotos. Valor de referencia (MXN) para el evento Programar cuando Cal no trae precio.
-// ⚠️ CONFIRMAR: pon el precio de cada sesión (o el anticipo). Mismos valores en assets/js/tracking.js.
-const SESSION_PRICES = {
-  "sesion-de-fotos-brisa": null,
-  "sesion-de-fotos-horizonte": null,
-  "sesion-de-fotos-marea": null,
-  "sesion-de-fotos": null,
-};
+// Sesiones de fotos (una reserva = una venta ya cobrada)
+const SESSION_SLUGS = new Set([
+  "sesion-de-fotos-brisa",
+  "sesion-de-fotos-horizonte",
+  "sesion-de-fotos-marea",
+  "sesion-de-fotos",
+]);
 
 const respond = (statusCode, obj) => ({
   statusCode,
@@ -60,14 +60,41 @@ function findPhone(payload) {
   return candidates.find((v) => typeof v === "string" && v.trim()) || "";
 }
 
-// Cal.com manda los montos en centavos (500000 = $5,000.00).
-function priceFromCal(p) {
-  const payment = Array.isArray(p.payment) ? p.payment.find((x) => x && x.success !== false) : null;
-  if (payment && payment.amount) {
-    return { value: Number(payment.amount) / 100, currency: (payment.currency || p.currency || "MXN").toUpperCase() };
+// Convierte "2,400", "2.400", "2400.50", "$2 400" en número.
+function toNumber(raw) {
+  let t = String(raw).replace(/[^\d.,]/g, "");
+  if (!t) return null;
+  if (/^\d{1,3}([.,]\d{3})+$/.test(t)) t = t.replace(/[.,]/g, ""); // separador de miles
+  else t = t.replace(/,/g, "");
+  const n = Number(t);
+  return isFinite(n) && n > 0 && n < 1e6 ? n : null;
+}
+
+// Busca el monto cobrado: campo del formulario -> notas de la reserva -> pago de Cal.
+function findAmount(p) {
+  const r = p.responses || {};
+  for (const key of ["monto", "precio", "total", "pago", "amount", "price"]) {
+    const f = r[key];
+    const v = f && typeof f === "object" ? f.value : f;
+    const n = v != null ? toNumber(v) : null;
+    if (n) return n;
   }
-  if (p.price) return { value: Number(p.price) / 100, currency: (p.currency || "MXN").toUpperCase() };
-  return { value: null, currency: "MXN" };
+  const notes = [p.additionalNotes, p.description, r.notes && r.notes.value, typeof r.notes === "string" ? r.notes : ""]
+    .filter((x) => typeof x === "string")
+    .join(" ");
+  const labeled = notes.match(/(?:monto|precio|total|pag[oó]|cobr[eéo])\D{0,12}?([\d][\d.,\s]*\d|\d)/i);
+  if (labeled) {
+    const n = toNumber(labeled[1]);
+    if (n) return n;
+  }
+  const money = notes.match(/\$\s*([\d][\d.,]*)/);
+  if (money) {
+    const n = toNumber(money[1]);
+    if (n) return n;
+  }
+  const payment = Array.isArray(p.payment) ? p.payment.find((x) => x && x.success !== false && x.amount) : null;
+  if (payment) return Number(payment.amount) / 100; // Cal manda centavos
+  return null;
 }
 
 exports.handler = async (event) => {
@@ -90,68 +117,52 @@ exports.handler = async (event) => {
 
   const trigger = body.triggerEvent;
   if (trigger === "PING") return respond(200, { ok: true, ping: true });
-  if (trigger !== "BOOKING_CREATED" && trigger !== "BOOKING_PAID") return respond(200, { ignored: trigger });
+  if (trigger !== "BOOKING_CREATED") return respond(200, { ignored: trigger });
 
   const p = body.payload || {};
   const slug = (p.eventType && p.eventType.slug) || p.type || "";
-  const isMeeting = MEETING_SLUGS.has(slug);
-  const isSession = Object.prototype.hasOwnProperty.call(SESSION_PRICES, slug);
-  if (!isMeeting && !isSession) return respond(200, { ignored: `slug:${slug}` });
+  if (!SESSION_SLUGS.has(slug)) return respond(200, { ignored: `slug:${slug}` });
 
-  // 2) Qué evento corresponde
-  let eventName;
-  if (trigger === "BOOKING_CREATED") eventName = isMeeting ? "Lead" : "Schedule";
-  else if (isSession) eventName = "Purchase";
-  else return respond(200, { ignored: "pago de reunión" });
-
-  // 3) Datos del cliente
+  // 2) Datos del cliente (los escribes tú al agendar)
   const attendee = (p.attendees && p.attendees[0]) || {};
   const email = attendee.email;
   const name = attendee.name;
   const phone = findPhone(p);
   if (!email && !phone) return respond(200, { ignored: "sin email ni teléfono" });
 
-  const uid = p.uid || p.bookingId || Date.now();
-  const prefix = { Lead: "lead", Schedule: "schedule", Purchase: "purchase" }[eventName];
-  const eventId = `${prefix}_${uid}`;
+  // 3) Monto cobrado
+  const amount = findAmount(p);
+  if (!amount) console.warn(`Compra sin monto (reserva ${p.uid}). Escribe "Monto: 2400" en las notas al agendar.`);
 
-  // 4) Precio: lo que Cal cobró; si no, el valor de referencia de la sesión
-  const fromCal = priceFromCal(p);
-  const value = fromCal.value != null ? fromCal.value : SESSION_PRICES[slug];
-  const customData = {
-    content_name: slug,
-    content_category: isMeeting ? "reunion" : "sesion",
-  };
+  const eventId = `purchase_${p.uid || p.bookingId || Date.now()}`;
 
-  const tasks = [
+  // 4) CAPI + audiencia en paralelo (si una falla, la otra sigue)
+  const [capi, aud] = await Promise.allSettled([
     sendCapiEvent({
-      eventName,
-      eventId,
-      eventTime: p.createdAt ? Math.floor(new Date(p.createdAt).getTime() / 1000) || undefined : undefined,
+      eventName: "Purchase",
+      eventId, // si Cal reintenta el webhook, Meta no la cuenta dos veces
       email,
       phone,
       name,
       sourceUrl: `https://cal.com/${CAL_USER}/${slug}`,
-      customData,
-      value: isMeeting ? undefined : value,
-      currency: fromCal.currency,
+      customData: { content_name: slug, content_category: "sesion", num_items: 1 },
+      value: amount || 0,
+      currency: "MXN",
     }),
-  ];
-  // Audiencia "Agendaron sesión": solo al agendar una sesión de fotos (no la reunión).
-  if (eventName === "Schedule") tasks.push(addToAudience({ email, phone, name }));
+    addToAudience({ email, phone, name }),
+  ]);
 
-  const [capi, aud] = await Promise.allSettled(tasks);
-  if (capi.status === "rejected") console.error(`CAPI ${eventName} falló:`, capi.reason.message);
-  if (aud && aud.status === "rejected") console.error("Audiencia falló:", aud.reason.message);
+  if (capi.status === "rejected") console.error("CAPI Purchase falló:", capi.reason.message);
+  if (aud.status === "rejected") console.error("Audiencia falló:", aud.reason.message);
 
-  // 200 siempre que la firma fue válida: el event_id evita duplicados si Cal reintenta.
+  // 200 siempre que la firma fue válida.
   return respond(200, {
     ok: true,
-    event: eventName,
+    event: "Purchase",
     event_id: eventId,
     slug,
-    value: isMeeting ? null : value,
+    value: amount || 0,
     capi: capi.status,
-    audience: aud ? aud.status : "n/a",
+    audience: aud.status,
   });
 };

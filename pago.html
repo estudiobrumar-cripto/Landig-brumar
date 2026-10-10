@@ -35,10 +35,10 @@
       <li><strong>2.</strong> Recibe tu contrato y la confirmación por WhatsApp.</li>
       <li><strong>3.</strong> Disfruta tus vacaciones: del resto me encargo yo.</li>
     </ol>
-    <!-- ⚠️ CONFIRMAR: pega aquí tu link de pago (Stripe, Mercado Pago o PayPal).
-         Configura en esa plataforma que, al pagar, regrese a:
-         https://brumar.org/gracias-pago.html?monto=MONTO&uid=ID_DE_LA_RESERVA
-         Mientras no exista el link, el botón abre WhatsApp para enviar los datos de pago. -->
+    <!-- Página lista para cuando haya pago en línea. HOY NO SE USA: Brumar cobra por fuera
+         y la Compra sale del webhook de Cal al agendar la sesión.
+         Para activarla: cambia el href del botón por tu link de pago y configura que, al pagar,
+         regrese a https://brumar.org/gracias-pago.html?monto=MONTO&uid=ID_DE_LA_RESERVA -->
     <a class="btn" id="payLink" data-track="Contact" data-track-name="Pagar anticipo (WhatsApp)" href="https://wa.me/529982247502?text=Hola%20Adriel%2C%20ya%20agend%C3%A9%20mi%20sesi%C3%B3n.%20%C2%BFMe%20compartes%20los%20datos%20para%20pagar%20el%20anticipo%3F" target="_blank" rel="noopener">Pagar mi anticipo</a>
     <span class="microcopy">Pago seguro. Si cambian tus planes, lo platicamos.</span>
   </div>

@@ -11,9 +11,10 @@
         navegador → Pixel            fbq(..., {eventID})
         navegador → /api/evento      → netlify/functions/capi.js → Conversions API
       Meta ve el mismo event_name + event_id y cuenta UNO solo (deduplicado).
-   3. Lead (Cliente potencial) y Schedule (Programar) los manda el servidor desde
-      el webhook de Cal.com (netlify/functions/cal-webhook.js). El navegador solo
-      los repite por Pixel con el mismo event_id para mejorar la coincidencia.
+   3. Lead (Cliente potencial) y Schedule (Programar) los dispara la app "Meta Pixel"
+      de Cal.com al reservar (Reunión → Lead, sesiones → Schedule). Este archivo NO
+      los repite, para no contarlos doble. Compra (Purchase) la manda el servidor
+      desde el webhook de Cal (netlify/functions/cal-webhook.js) al agendar una sesión.
    4. Los botones se miden con atributos HTML, sin escribir JS:
         data-track="NombreDelEvento"   data-track-name="texto"   data-value="900"
       Además: todo botón de Cal (data-cal-link) = InteresadoReunion
@@ -34,8 +35,9 @@
   /* ---------- EMBUDO: catálogo de eventos permitidos ----------
      std:true  → evento estándar de Meta (fbq 'track')
      std:false → evento personalizado     (fbq 'trackCustom')
-     server:false → el servidor NO lo reenvía desde el navegador porque ya lo
-                    manda el webhook de Cal con el mismo event_id.            */
+     server:false → el servidor NO lo acepta desde el navegador.
+     Lead y Schedule quedan en el catálogo solo como referencia: hoy los
+     dispara la app Meta Pixel de Cal.com, no este archivo.                  */
   var EVENTS = {
     PageView:          { std: true,  etapa: 'Visita' },
     VioPortafolio:     { std: false, etapa: 'Interés',    nombre: 'Vio portafolio' },
@@ -47,16 +49,6 @@
     Schedule:          { std: true,  etapa: 'Conversión', nombre: 'Programar',         server: false },
     InitiateCheckout:  { std: true,  etapa: 'Pago',       nombre: 'Inicio compra' },
     Purchase:          { std: true,  etapa: 'Pago',       nombre: 'Compra' }
-  };
-
-  /* Precio de referencia de cada sesión de Cal (MXN) para InitiateCheckout.
-     ⚠️ CONFIRMAR: Cal no publica los precios. Pon aquí el anticipo o el total
-     de cada sesión. Mismos valores en netlify/functions/cal-webhook.js.    */
-  var SESSION_PRICES = {
-    'sesion-de-fotos-brisa': null,
-    'sesion-de-fotos-horizonte': null,
-    'sesion-de-fotos-marea': null,
-    'sesion-de-fotos': null
   };
 
   var html = document.documentElement;
@@ -265,10 +257,7 @@
 
     // Gracias por agendar la REUNIÓN (Cal.com redirige aquí)
     'gracias-reunion': function () {
-      if (bookingUid) {
-        // Mismo event_id que manda el webhook → Meta lo deduplica y mejora la coincidencia.
-        track('Lead', { content_name: 'Reunión agendada' }, { eventId: 'lead_' + bookingUid, persist: true, onceKey: 'lead_' + bookingUid });
-      }
+      // "Cliente potencial" lo dispara la app Meta Pixel de Cal al reservar; aquí solo Contacto.
       track('Contact', { content_name: 'Reunión agendada', content_category: 'cal_reunion' }, {
         eventId: 'contact_' + (bookingUid || rid()),
         persist: true,
@@ -277,12 +266,10 @@
       });
     },
 
-    // Thank you de SESIÓN agendada = página de pago → "Inicio compra"
+    // Página de pago en línea → "Inicio compra".
+    // Hoy NO está en uso (Brumar cobra por fuera); queda lista para cuando haya pago en línea.
     pago: function () {
-      if (bookingUid) {
-        track('Schedule', { content_name: slug || 'Sesión de fotos' }, { eventId: 'schedule_' + bookingUid, persist: true, onceKey: 'schedule_' + bookingUid });
-      }
-      var value = param('monto', 'value') || SESSION_PRICES[slug];
+      var value = param('monto', 'value');
       track('InitiateCheckout', {
         content_name: slug || 'Sesión de fotos',
         content_category: 'sesion',
@@ -296,7 +283,8 @@
       });
     },
 
-    // Thank you de PAGO → "Compra"
+    // Thank you de PAGO en línea → "Compra". Hoy NO está en uso (la compra sale del webhook).
+    // Usa event_id purchase_<uid>, el mismo del webhook, para no duplicar si algún día conviven.
     'gracias-pago': function () {
       // Acepta los parámetros de retorno de Cal, Stripe, Mercado Pago o PayPal
       var payId = param('uid', 'bookingUid', 'payment_id', 'collection_id', 'session_id', 'tx', 'id');
