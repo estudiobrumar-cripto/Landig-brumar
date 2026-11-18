@@ -86,7 +86,7 @@ function updateQuoter(){
 
   const extrasMsg = extras.length ? ` + ${extras.map(e => e.name).join(' + ')}` : '';
   const msg = encodeURIComponent(`Hola Adriel, quiero reservar el ${tier.name} de ${n} fotos${extrasMsg} (total aprox. $${total} MXN).`);
-  qWhatsapp.href = `https://wa.me/529982247502?text=${msg}`;
+  qWhatsapp.href = `https://wa.me/529982144122?text=${msg}`;
   // Datos de precio para el evento Contact (los lee tracking.js al hacer clic → Pixel + CAPI)
   qWhatsapp.dataset.value = total;
   qWhatsapp.dataset.trackName = `${tier.name} · ${n} fotos${extrasMsg}`;
